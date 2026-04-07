@@ -855,9 +855,9 @@
       if(ha) ha.style.display = 'none';
       // Hide pre-sale prices, show regular
       var pres = document.querySelectorAll('.hp-pre');
-      for(var i=0;i<pres.length;i++) pres[i].style.display='none';
+      for(var i=0;i<pres.length;i++) pres[i].classList.add('hx');
       var regs = document.querySelectorAll('.hp-reg');
-      for(var i=0;i<regs.length;i++) regs[i].style.display='';
+      for(var i=0;i<regs.length;i++) regs[i].classList.remove('hx');
       // Stop any running intervals
       for(var i=1;i<9999;i++) clearInterval(i);
     }, 500);
