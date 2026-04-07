@@ -1,14 +1,303 @@
-<!-- Helm — POST-DEADLINE preview (simulates what customers see after April 8 11:59 PM) -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Magic Money</title>
+    <meta property="og:description" content="Buy your tickets for the Spring Break Extravaganza happening on Apr  9, 10, 11 &amp; 12, 2026 online here!" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Magic Money " />
+    <meta name="twitter:description" content="Buy your tickets for the Spring Break Extravaganza happening on Apr  9, 10, 11 &amp; 12, 2026 online here!" />
+    <meta property="og:image" content="https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_638114257791211083.jpg" />
+    <meta name="twitter:image" content="https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_638114257791211083.jpg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/images/ETicketImages/favicon.ico" />
+    
+    <link href="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/fullcalendar.min.css" rel="stylesheet" />
+
+    <link href="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/needsharebutton.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/ETicketcss?v=CgZ81cxH7QtcL5Qrj7zsmQr-mxNbZMvcWg_WE46RlyY1" rel="stylesheet"/>
+
+    <!--[if IE]>
+    <script type="text/javascript" src="js/html5.js"></script>
+    <![endif]-->
+    <script src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/bundles/jquery?v=DVrNgzF1X9Eg49WrgJbaiCBsMHjmHkABwV0LULv6bwg1"></script>
+
+    <script src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/bundles/modernizr?v=wBEWDufH_8Md-Pbioxomt90vm6tJN2Pyy9u9zHtWsPo1"></script>
+
+    <script src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/bundles/jqueryval?v=CscDCYKiyigBhIQTJsxhIQqf-LoZUf7GH2o1SgDjN2I1"></script>
+
+    
+    <script src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Scripts/fastclick.min.js"></script>
+    <script src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Scripts/general.js"></script>
+    
+    <script src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/bundles/bootstrap?v=mDZt3DuLzGEflwYc_fop-zj-Wv0UZiTE_nJ7JmQYd881"></script>
+
+    
+    <script src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Scripts/needsharebutton.min.js"></script>
+    <script src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Scripts/jquery.da-share.js"></script>
+    
+    <script src="https://cdn-eu.seatsio.net/chart.js"></script>
+    <style type="text/css">
+        
+        .need-share-button-opened .need-share-button_dropdown {
+            background: white !important;
+        }
+        .btn-lg.px-2 {
+            background: #3b5998;
+            color: white;
+            padding: 12px;
+            border-radius: 0;
+            font-size: 16px;
+            box-shadow: none !important;
+        }
+        .da-share-html {
+            margin-left: auto;
+            margin-right: 10px;
+        }
+        @media (max-width: 560px) {
+
+            .header-top .btn-so {
+                font-size: 15px !important;
+                padding: 4px 23px 4px 23px !important;
+            }
+        }
+        .lookup-btn {
+            font-size: 18px;
+            padding: 5px 15px;
+            background: white !important;
+            color: #000;
+            padding: 0px 30px 0px 30px;
+            border: #5A78FF 2px solid;
+            margin-top: 5px !important;
+        }
+            .lookup-btn:hover {
+                background: #f0ecec !important;
+                    color: #000 !important;
+            }
+    </style>
+</head>
+
+<body id="english">
+    <div class="loading" id="loading" style="display: none;">
+        <img src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/images/loader.svg" alt="">
+    </div>
+    <div class="loading" id="loading-3ds" style="display: none;">
+        <img src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/images/loader.svg" alt="">
+    </div>
+    <div class="wrapper">
+        <script>
+            console.log('http://helmandsons.magicmoneyllc.com/MagicMoney_Web/ETicket/EventDetails/159')
+        </script>
+        <!-- Start Header -->
+
+            <header class="header @*event-header*@">
+                <div class="header-top">
+                    <a href="#" title="Back" class="back-btn" onclick="RedirectURL();">
+                        <img src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/images/ETicketImages/back-arrow.svg" alt="Back">
+                    </a>
+                    
+                    
+                    <div style="margin-left: auto; display: flex;" class="eventdetail-share">
+
+                        <div class="da-share-html da-fb da-tw " id="DaShare" style="display:none;margin-left:auto;"></div>
+
+                        <button title="Share" class="btn btn-primary btn-s" style="margin-left:auto;" onclick="DisplayShare()">
+                            <img src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/images/ETicketImages/ic-share.svg" alt="Share">
+                            <span>Share</span>
+                        </button>
+                        
+                    </div>
+                </div>
+                <div class="header-bottom">
+                    <div class="main-heading">
+                        <div class="logo">
+                            <a onclick="RedirectURL();" style="cursor:pointer;">
+                                    <img src="https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_638114257791211083.jpg" alt="" style="object-fit: cover;width:100%;">
+
+                                
+                            </a>
+                        </div>
+                        <div class="event-details">
+                            <h1 id="event-name"></h1>
+                            <p id="event-duration"></p>
+                        </div>
+                    </div>
+                    <div class="opening-time" id="timer" style="display:none;">
+                        <ul>
+                            <li>
+                                <p id="day">0</p>
+                                <span>Days</span>
+                            </li>
+                            <li>
+                                <p id="hour">0</p>
+                                <span>Hours</span>
+                            </li>
+                            <li>
+                                <p id="min">0</p>
+                                <span>Minutes</span>
+                            </li>
+                            <li>
+                                <p id="sec">0</p>
+                                <span>Seconds</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="primary-link">Time to Grand Opening</a>
+                    </div>
+                </div>
+            </header>
+            <button class="btn btn-primary get-ticket-btn" title="Get Tickets" type="button" onclick="OpenBuyTicketModal()">
+                Get Tickets
+            </button>
+            <div style=" width: auto; margin-left: auto; text-align: center; padding: 20px 20px;" class="order-lookup-mobile">
+                <span style="font-size:14px">ALREADY BOUGHT TICKETS?</span>
+                <br />
+                <button class="btn btn-primary m-0 btn-so lookup-btn" onclick="OpenSearchOrderWizard()" style="width:100%">
+                    <img src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/images/ETicketImages/blue-search-icon.svg" style="margin-bottom: -5px;" />
+                    Order Lookup
+                </button>
+            </div>
+                <!-- End Header -->
+        <!-- Main Content -->
+        <main class="main-content event-details-wrapper ">
+            
+            
+
+
+<style type="text/css">
+
+    .header-top {
+        justify-content: normal;
+    }
+
+    .rules-instruction-title {
+        font-size: 22px;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    @media (max-width: 560px) {
+
+        .soldOutText {
+            display: none !important;
+        }
+
+        .eventdetail-share {
+            flex-direction: column-reverse;
+        }
+
+        .header-top .btn-s {
+            font-size: 15px !important;
+            padding: 4px 33px 4px 33px !important;
+        }
+
+        .header-top .m-0 {
+            margin-bottom: 5px;
+            padding: 4px 15px;
+        }
+
+        .header-top {
+            padding: 15px 15px;
+        }
+    }
+
+    .daywisebtn {
+        font-size: 1em;
+        padding: 5px 20px;
+    }
+
+    .daywisebtn1 {
+        font-size: 0.9em;
+        padding: 6px 25px;
+    }
+
+    .input-validation-error {
+        border: red 1px solid !important;
+    }
+
+    .day-section {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .field-validation-error {
+        display: none !important;
+    }
+
+    .plan-list td:last-child, .plan-list th:last-child {
+        padding-right: 10px;
+    }
+
+    .content-block {
+        margin-bottom: 30px;
+    }
+
+    .fc-toolbar .fc-center {
+        font-size: 17px;
+    }
+
+    .fc-day {
+        background-color: #cce9f6;
+    }
+    /*.fc-day.fc-today
+    {
+    background-color: #cce9f6 !important;
+    }*/
+    .fc-ltr .fc-basic-view .fc-day-number {
+        text-align: left;
+    }
+
+    .fc-highlight {
+        background: #03a1ed;
+        opacity: 1;
+        filter: alpha(opacity=30);
+    }
+
+    @media (max-width: 560px) {
+        .fc-row.fc-week.fc-widget-content {
+            height: 50px !important;
+            min-height: 50px !important;
+        }
+    }
+
+    .disabled.fc-day {
+        /*background-color: #bec0c0;*/
+        background-color: #ffffff;
+        color: #FFFFFF;
+        cursor: not-allowed;
+    }
+
+    .soldout.fc-day {
+        background-color: #ddc2c2;
+        color: #FFFFFF;
+        cursor: not-allowed;
+    }
+</style>
+
+
+<input data-val="true" data-val-number="The field Latitude must be a number." id="hdnLatitude" name="eventDetail.Latitude" type="hidden" value="33.93112570" />
+<input data-val="true" data-val-number="The field Longitude must be a number." id="hdnLongitude" name="eventDetail.Longitude" type="hidden" value="-117.54866100" />
+<input id="hdnEventStartDate" name="eventDetail.StartDate" type="hidden" value="Apr 09 2026 05:00:00" />
+<input data-val="true" data-val-number="The field ID must be a number." data-val-required="The ID field is required." id="hdnEventID" name="eventDetail.ID" type="hidden" value="159" />
+<input data-val="true" data-val-number="The field FairTimeZoneOffsetMins must be a number." data-val-required="The FairTimeZoneOffsetMins field is required." id="FairTimeZoneOffsetMins" name="FairTimeZoneOffsetMins" type="hidden" value="-420" />
+<input data-val="true" data-val-required="The IsStartTimeAvailable field is required." id="hdnIsStartTimeAvailable" name="eventDetail.IsStartTimeAvailable" type="hidden" value="True" />
+<div class="left">
+    <h6>About this event</h6>
+    <!-- Helm & Sons — Spring Break Extravaganza — v7 optimized -->
 <style>
 .hp{transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer}
 .hp:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,.25)!important}
 .hf{transition:all .3s cubic-bezier(.4,0,.2,1)}
 .hf:hover{transform:scale(1.04);box-shadow:0 12px 32px rgba(0,0,0,.2)!important}
 .hx{display:none!important}
+#hc-s{transition:transform .15s cubic-bezier(.4,0,.2,1)}
 </style>
 <div style="max-width:680px;width:100%;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;margin:0 auto;">
 
-  <!-- HEADER -->
+  <!-- HEADER — carousel bg -->
   <div style="border-radius:18px 18px 0 0;overflow:hidden;position:relative;background:url('https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_637180772673699343.jpg') center/cover no-repeat;">
     <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(123,0,168,.87) 0%,rgba(74,0,102,.9) 60%,rgba(45,0,61,.93) 100%);"></div>
     <div style="position:relative;z-index:1;padding:20px 20px 16px;text-align:center;">
@@ -18,32 +307,73 @@
     </div>
   </div>
 
-  <!-- COUNTDOWN + ADVANCE SALE HIDDEN (deadline passed) -->
+  <!-- COUNTDOWN TIMER -->
+  <div id="hd" style="background:linear-gradient(90deg,#FBAE1B,#f59e0b,#FBAE1B);padding:12px 16px;text-align:center;">
+    <div style="font-size:12px;font-weight:800;color:#4a0066;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;">&#9200; Online Specials End April 8 at 11:59 PM</div>
+    <div id="hc" style="display:flex;justify-content:center;gap:8px;">
+      <div style="background:#4a0066;border-radius:10px;padding:8px 12px;min-width:54px;text-align:center;">
+        <div id="hc-d" style="font-size:28px;font-weight:900;color:#fff;line-height:1;font-variant-numeric:tabular-nums;">--</div>
+        <div style="font-size:9px;font-weight:700;color:#FBAE1B;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Days</div>
+      </div>
+      <div style="background:#4a0066;border-radius:10px;padding:8px 12px;min-width:54px;text-align:center;">
+        <div id="hc-h" style="font-size:28px;font-weight:900;color:#fff;line-height:1;font-variant-numeric:tabular-nums;">--</div>
+        <div style="font-size:9px;font-weight:700;color:#FBAE1B;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Hours</div>
+      </div>
+      <div style="background:#4a0066;border-radius:10px;padding:8px 12px;min-width:54px;text-align:center;">
+        <div id="hc-m" style="font-size:28px;font-weight:900;color:#fff;line-height:1;font-variant-numeric:tabular-nums;">--</div>
+        <div style="font-size:9px;font-weight:700;color:#FBAE1B;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Min</div>
+      </div>
+      <div style="background:#4a0066;border-radius:10px;padding:8px 12px;min-width:54px;text-align:center;">
+        <div id="hc-s" style="font-size:28px;font-weight:900;color:#fff;line-height:1;font-variant-numeric:tabular-nums;">--</div>
+        <div style="font-size:9px;font-weight:700;color:#FBAE1B;text-transform:uppercase;letter-spacing:1px;margin-top:3px;">Sec</div>
+      </div>
+    </div>
+  </div>
 
   <div style="background:linear-gradient(180deg,#f5f0ff 0%,#fff 100%);padding:20px 12px 0;">
 
-    <!-- WRISTBAND CARDS — regular gate prices, no savings badges -->
+    <!-- ADVANCE SALE -->
+    <div id="ha" style="text-align:center;margin-bottom:14px;">
+      <div style="display:inline-block;background:linear-gradient(135deg,#FBAE1B,#f59e0b);color:#4a0066;font-size:13px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:6px 20px;border-radius:22px;box-shadow:0 3px 10px rgba(251,174,27,.3);">&#127881; Advance Sale Specials</div>
+      <div style="font-size:14px;color:#777;margin-top:6px;">Buy early &amp; save BIG vs. gate prices</div>
+    </div>
+
+    <!-- 2 WRISTBAND CARDS — single bg image each, no double-load -->
     <div style="display:flex;gap:10px;margin-bottom:22px;">
-      <div class="hp" style="flex:1;border-radius:16px;overflow:hidden;position:relative;min-height:220px;background:url('https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_637180771573409011.jpg') center/cover;box-shadow:0 4px 16px rgba(110,0,149,.15);">
+      <div class="hp" style="flex:1;border-radius:16px;overflow:hidden;position:relative;min-height:280px;background:url('https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_637180771573409011.jpg') center/cover;box-shadow:0 4px 16px rgba(110,0,149,.15);">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(110,0,149,.7) 0%,rgba(55,0,85,.95) 100%);"></div>
         <div style="position:relative;z-index:1;padding:22px 12px 18px;text-align:center;display:flex;flex-direction:column;height:100%;box-sizing:border-box;">
           <div style="font-size:15px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:2px;">Unlimited<br>Rides</div>
-          <div style="font-size:56px;font-weight:900;color:#fff;margin:10px 0 4px;line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.3);">$50</div>
+          <div class="hp-pre" style="font-size:56px;font-weight:900;color:#fff;margin:10px 0 4px;line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.3);">$30</div>
+          <div class="hp-reg hx" style="font-size:56px;font-weight:900;color:#fff;margin:10px 0 4px;line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.3);">$50</div>
           <div style="font-size:15px;color:rgba(255,255,255,.9);font-weight:600;">All day, all rides</div>
+          <div class="hp-pre" style="margin-top:auto;padding-top:14px;">
+            <div style="background:rgba(34,197,94,.25);border:2px solid #4ade80;border-radius:10px;padding:10px 8px;">
+              <div style="font-size:20px;font-weight:900;color:#4ade80;">SAVE $20</div>
+              <div style="font-size:13px;color:rgba(255,255,255,.65);text-decoration:line-through;margin-top:2px;">Gate: $50</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="hp" style="flex:1.15;border-radius:16px;overflow:hidden;position:relative;min-height:240px;background:url('https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_637180781903669695.jpg') center/cover;box-shadow:0 6px 24px rgba(251,174,27,.3);border:3px solid #FBAE1B;">
+      <div class="hp" style="flex:1.15;border-radius:16px;overflow:hidden;position:relative;min-height:300px;background:url('https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_637180781903669695.jpg') center/cover;box-shadow:0 6px 24px rgba(251,174,27,.3);border:3px solid #FBAE1B;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(74,0,102,.78) 0%,rgba(45,0,61,.95) 100%);"></div>
         <div style="position:relative;z-index:1;padding:22px 12px 18px;text-align:center;display:flex;flex-direction:column;height:100%;box-sizing:border-box;">
           <div style="font-size:14px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:2px;line-height:1.3;">Unlimited Rides<br>+ WoW Express</div>
-          <div style="font-size:60px;font-weight:900;color:#fff;margin:10px 0 4px;line-height:1;text-shadow:0 3px 10px rgba(0,0,0,.4);">$80</div>
+          <div class="hp-pre" style="font-size:60px;font-weight:900;color:#fff;margin:10px 0 4px;line-height:1;text-shadow:0 3px 10px rgba(0,0,0,.4);">$50</div>
+          <div class="hp-reg hx" style="font-size:60px;font-weight:900;color:#fff;margin:10px 0 4px;line-height:1;text-shadow:0 3px 10px rgba(0,0,0,.4);">$80</div>
           <div style="font-size:15px;color:rgba(255,255,255,.95);font-weight:700;">Skip every line all day!</div>
+          <div class="hp-pre" style="margin-top:auto;padding-top:14px;">
+            <div style="background:rgba(34,197,94,.3);border:2px solid #4ade80;border-radius:10px;padding:10px 8px;">
+              <div style="font-size:20px;font-weight:900;color:#4ade80;">SAVE $30</div>
+              <div style="font-size:13px;color:rgba(255,255,255,.65);text-decoration:line-through;margin-top:2px;">Gate: $80</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- ONLINE SPECIALS — still shown -->
+    <!-- ONLINE SPECIALS — Game Pass + Meal Deal -->
     <div style="text-align:center;margin-bottom:14px;">
       <div style="display:inline-block;background:#fff;border:2px solid #6E0095;color:#6E0095;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:22px;">&#127922; Online Specials</div>
     </div>
@@ -78,7 +408,7 @@
       </div>
     </div>
 
-    <!-- FEATURES -->
+    <!-- FEATURES — rides w/ carousel photo, food + games gradient -->
     <div style="display:flex;gap:8px;margin-bottom:20px;">
       <div class="hf" style="flex:1;border-radius:14px;overflow:hidden;position:relative;height:130px;background:url('https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_637180772673699343.jpg') center/cover;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(88,28,135,.35) 0%,rgba(67,56,202,.85) 100%);"></div>
@@ -104,7 +434,7 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- FOOTER — condensed -->
   <div style="background:#f5f0ff;padding:14px 12px;border-radius:0 0 18px 18px;">
     <div style="background:#fefce8;border:1px solid #fbbf24;border-radius:10px;padding:12px 14px;margin-bottom:8px;">
       <div style="font-size:14px;font-weight:800;color:#92400e;">&#9888;&#65039; Wristband Rules</div>
@@ -123,3 +453,421 @@
     </div>
   </div>
 </div>
+<script>
+(function(){
+  var deadline = new Date('2026-04-09T06:59:00Z'); // April 8 11:59 PM Pacific
+  function expired(){
+    document.getElementById('hd').classList.add('hx');
+    document.getElementById('ha').classList.add('hx');
+    var p=document.querySelectorAll('.hp-pre');
+    for(var i=0;i<p.length;i++) p[i].classList.add('hx');
+    var r=document.querySelectorAll('.hp-reg');
+    for(var i=0;i<r.length;i++) r[i].classList.remove('hx');
+  }
+  function tick(){
+    var now = new Date();
+    var diff = deadline - now;
+    if(diff <= 0){ expired(); return; }
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff%86400000)/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    var pad = function(n){ return n < 10 ? '0'+n : ''+n; };
+    document.getElementById('hc-d').textContent = pad(d);
+    document.getElementById('hc-h').textContent = pad(h);
+    document.getElementById('hc-m').textContent = pad(m);
+    document.getElementById('hc-s').textContent = pad(s);
+    // Pulse the seconds box
+    var sBox = document.getElementById('hc-s');
+    sBox.style.transform = 'scale(1.1)';
+    setTimeout(function(){ sBox.style.transform = 'scale(1)'; }, 150);
+  }
+  if(new Date() > deadline){ expired(); }
+  else { tick(); setInterval(tick, 1000); }
+})();
+</script>
+
+</div>
+<div class="right">
+    <button class="btn btn-primary" title="Get Tickets" type="button" onclick="OpenBuyTicketModal()">
+        Get Tickets
+    </button>
+    <div style=" width: auto; margin-left: auto; margin-bottom:20px;text-align:center" class="order-lookup">
+        <span style="font-size:14px">ALREADY BOUGHT TICKETS?</span>
+        <br />
+        <button class="btn btn-primary m-0 btn-so lookup-btn" onclick="OpenSearchOrderWizard()" style="padding: 0px 30px 0px 30px;">
+            <img src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/images/ETicketImages/blue-search-icon.svg" style="margin-bottom: -5px;" />
+            Order Lookup
+        </button>
+    </div>
+    <h6>Dates</h6>
+    <strong>Apr  9, 10, 11 &amp; 12, 2026</strong>
+    <h6>Location</h6>
+    <p>
+        
+        <a href="javascript:void(0);" onclick="openGoogleMap();" style="text-decoration: underline; cursor: pointer; color: #5A78FF; ">
+            5555 Hamner Ave. Norco, CA, USA
+        </a>
+    </p>
+        <h6>HOURS</h6>
+        <ul>
+                <li>
+                    <strong>
+                        
+                        Thu. (04/09):
+                    </strong>
+                        05:00pm - 10:00pm
+                </li>
+                <li>
+                    <strong>
+                        
+                        Fri. (04/10):
+                    </strong>
+                        05:00pm - 10:00pm
+                </li>
+                <li>
+                    <strong>
+                        
+                        Sat. (04/11):
+                    </strong>
+                        02:00pm - 10:00pm
+                </li>
+                <li>
+                    <strong>
+                        
+                        Sun. (04/12):
+                    </strong>
+                        02:00pm - 10:00pm
+                </li>
+        </ul>
+</div>
+
+<div class="modal fade " id="BuyTicketModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+</div>
+<div class="modal fade " id="SearchOrderModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+</div>
+
+<div class="modal fade" id="WarningMessageETicketEventDetail" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-box modal-content">
+            <div class="heading">
+                <h2 style="padding:0;font-size:24px;">Alert</h2>
+                <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="from-box" style="border-bottom:none;margin-bottom:0px;">
+                    
+                    <p class="bg-danger" id="AlertMsg"></p>
+                </div>
+            </div>
+            <div class="modal-footer text-left">
+                <button type="button" class="btn btn-cancel" data-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="WarningMessageForAddon" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-box modal-content">
+            <div class="heading">
+                <h2 style="padding:0;font-size:24px;">Alert</h2>
+                <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="from-box" style="border-bottom:none;margin-bottom:0px;">
+                    <p class="bg-danger" id="AlertMsgAddon"></p>
+                </div>
+            </div>
+            <div class="modal-footer text-left">
+                <button type="button" class="btn btn-primary btn-addon" onclick="GotoCheckout(true);">Continue to Checkout</button>
+                <button type="button" class="btn btn-cancel btn-addon" data-dismiss="modal" aria-label="Close">Add Add-Ons</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="DisplayRulesAndInstructionsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog buy-ticket-dialog primary-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header single-header">
+                <span class="modal-title rules-instruction-title">
+                    <span>Rules & Instructions</span>
+                </span>
+                <button type="button" class="close with-margin" title="close" data-dismiss="modal" aria-label="Close">
+                    <img src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Content/images/ETicketImages/ic-close.svg" alt="Close">
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="body-title">
+                    <span id="RulesAndInstrutionOfPlanOrEvent"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="https://helmandsons.magicmoneyllc.com/MagicMoney_Web/Scripts/jquery.mask.js"></script>
+
+<script type="text/javascript">
+    $("button[data-dismiss-modal=modal2]").click(function () {
+        $('#WarningMessageETicketEventDetail').modal('hide');
+    });
+    function JsCountDown() {
+        $("#timer").hide();
+        if ($("#hdnIsStartTimeAvailable").val() == "True") {
+            var countDownDate = new Date($("#hdnEventStartDate").val()).getTime();
+
+            //var countDownDate = new Date("Mar 30, 2022 19:48:25").getTime();
+            var x = setInterval(function () {
+                var today = new Date();
+                var offset = parseFloat(parseFloat($("#FairTimeZoneOffsetMins").val())/ 60);
+                var utc = today.getTime() + (today.getTimezoneOffset() * 60000);
+                var now = new Date(utc + (3600000 * offset));
+
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                $("#day").html(days);
+                $("#hour").html(hours);
+                $("#min").html(minutes);
+                $("#sec").html(seconds);
+
+                if (distance <= 0) {
+                    clearInterval(x);
+                    $("#timer").hide()
+                }
+                else {
+                    $("#timer").show()
+                }
+            }, 1000);
+        }
+        else {
+            $("#timer").hide();
+        }
+
+    }
+
+    // Google Map
+    function openGoogleMap() {
+        var address = '5555 Hamner Ave. Norco, CA, USA';
+        var url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(address);
+        window.open(url, "_blank");
+    }
+
+    $(document).ready(function () {
+        var back = 'False';
+         $("#event-name").html('Spring Break Extravaganza');
+        $("#event-duration").html('Apr  9, 10, 11 &amp; 12, 2026');
+        //InItNeedShareButton();
+        JsCountDown();
+        if (back == "True") {
+            OpenBuyTicketModalFromBack()
+        }
+
+    });
+
+    function InItNeedShareButton() {
+        new needShareDropdown(document.getElementById('share-btn-new'), {
+            shareButtonClass: false,
+            iconStyle: 'box',
+            boxForm: 'horizontal',
+            //position: 'bottomCenter',
+            position: 'middleLeft',
+            //url: 'https://knowledge.hubspot.com/social/featured-image-not-displaying-correctly-in-social-preview',
+            networks: 'Twitter,Facebook'
+
+        });
+    }
+    function getDates(start, end) {
+        var dateArray = new Array();
+        var startDate = new Date(start._d);
+        var stopDate = new Date(end._d);
+        if (start._isUTC) {
+            startDate = startDate.addHours(startDate.getTimezoneOffset() / 60);
+        }
+        if (end._isUTC) {
+            stopDate = stopDate.addHours(stopDate.getTimezoneOffset() / 60);
+        }
+
+
+        var currentDate = startDate;
+        while (currentDate < stopDate) {
+            dateArray.push(new Date(currentDate));
+            currentDate.setDate(currentDate.getDate() + 1);
+            //currentDate = currentDate.addDays(1);
+        }
+        return dateArray;
+    }
+
+     function OpenBuyTicketModal() {
+         var url1 = '/MagicMoney_Web/ETicket/BuyTicket';
+         url1 = url1 + "?id=" + $("#hdnEventID").val();
+        $.ajax({
+            url: url1,
+            type: "GET",
+            dataType: "html",
+            success: function (response) {
+                $("#timerSpan").html("");
+                $('#BuyTicketModal').html(response);
+                CountDown(false);
+                $('#BuyTicketModal').modal("show");
+                $(window).scrollTop(0)
+                $("#divStatusMessage .bg-danger").hide();
+            }
+        });
+
+    }
+
+    function OpenBuyTicketModalFromBack() {
+         var url1 = '/MagicMoney_Web/ETicket/BuyTicket';
+         url1 = url1 + "?id=" + $("#hdnEventID").val();
+        $.ajax({
+            url: url1,
+            type: "GET",
+            dataType: "html",
+            success: function (response) {
+                $("#timerSpan").html("");
+                $('#BuyTicketModal').html(response);
+                $('#EventDateDiv').hide();
+                $('.ticket-div').show();
+                if ($("#IsEventWithoutInventory").val() == "False") {
+                    $("#buyTicketBack").show();
+                }
+                $('#BuyTicketModal').modal("show");
+                $(window).scrollTop(0)
+                $("#divStatusMessage .bg-danger").hide();
+                CountDown(true);
+            }
+        });
+
+    }
+
+    $(document).on('show.bs.modal', '#BuyTicketModal', function (event) {
+        QuantityKeyDownEvent();
+        $.validator.unobtrusive.parse("#frmBuyTicket");
+        $(".Quantity").each(function (e) {
+            var value = $(this).val();
+            if (value == 0) {
+                $(this).closest("tr").removeClass("active");
+            }
+            else {
+                $(this).closest("tr").addClass("active");
+            }
+        })
+    });
+    $(document).on('hidden.bs.modal', '#BuyTicketModal', function () {
+        clearInterval(myInterval);
+    });
+    function RedirectToOrderPage() {
+        window.location.href = '/MagicMoney_Web/ETicket/Orders';
+    }
+</script>
+
+            <input type="hidden" id="pagename" value="list" />
+        </main>
+        <!-- End Main Content -->
+    </div>
+
+
+    <!-- Start Footer -->
+    <footer class="footer">
+        <p class="copyright">Copyright &copy; 2026 Magic Money, All rights reserved. Version: 3.3.2</p>
+    </footer>
+    <!-- End Footer -->
+    
+    <script type="text/javascript">
+
+        function DisplayShare() {
+            $("#DaShare").toggle();
+        }
+
+    function OpenSearchOrderWizard() {
+         var url1 = '/MagicMoney_Web/ETicket/SearchOrdersWizard';
+        $.ajax({
+            url: url1,
+            type: "GET",
+            dataType: "html",
+            success: function (response) {
+                $('#SearchOrderModel').html(response);
+                $('#SearchOrderModel').modal("show");
+                $("#divStatusMessage .bg-danger").hide();
+            }
+        });
+
+    }
+
+        $(document).click(function (event) {
+            var ee = event.target;
+            if (!event.target.outerHTML.toLowerCase().includes("share")) {
+                $("#DaShare").hide();
+            }
+
+        });
+        function RedirectURL() {
+            window.location.href = '/MagicMoney_Web/ETicket/UpcomingEvents';
+        }
+        function RedirectURLToReloadBand() {
+            window.location.href = '/MagicMoney_Web/ETicket/ReloadBand';
+        }
+
+        //$(document).ready(function () {
+        //    setTimeout(function () {
+        //        $('.addthis_button_compact').show();
+        //    }, 5000)
+        //})
+        $(document).on('show.bs.modal', '.modal', function (event) {
+            var zIndex = 1040 + (10 * $('.modal:visible').length);
+            $(this).css('z-index', zIndex);
+            setTimeout(function () {
+                $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+            }, 0);
+        });
+
+        $(document).on('hidden.bs.modal', '.modal', function () {
+            $('.modal:visible').length && $(document.body).addClass('modal-open');
+        });
+        $(document).ajaxStart(function () {
+            $('#loading').show();
+        }).ajaxStop(function () {
+            $('#loading').hide();
+        });
+    </script>
+
+<script>
+// PREVIEW: Force post-deadline state
+(function(){
+  // Wait for page to fully load, then trigger expired state
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      // Hide countdown timer
+      var hd = document.getElementById('hd');
+      if(hd) hd.style.display = 'none';
+      // Hide advance sale header
+      var ha = document.getElementById('ha');
+      if(ha) ha.style.display = 'none';
+      // Hide pre-sale prices, show regular
+      var pres = document.querySelectorAll('.hp-pre');
+      for(var i=0;i<pres.length;i++) pres[i].style.display='none';
+      var regs = document.querySelectorAll('.hp-reg');
+      for(var i=0;i<regs.length;i++) regs[i].style.display='';
+      // Stop any running intervals
+      for(var i=1;i<9999;i++) clearInterval(i);
+    }, 500);
+  });
+})();
+</script>
+<div style="position:fixed;top:0;left:0;right:0;background:#dc2626;color:#fff;text-align:center;padding:8px 12px;font-family:sans-serif;font-size:13px;font-weight:700;z-index:99999;box-shadow:0 2px 8px rgba(0,0,0,.3);">
+  &#128312; PREVIEW: This is how the page looks AFTER the advance sale ends (April 8 at 11:59 PM)
+</div>
+<style>body{margin-top:36px !important;}</style>
+</body>
+
+</html>
