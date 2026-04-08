@@ -227,36 +227,40 @@ header ~ button.get-ticket-btn { display: none !important; }
 
 /* ══ GET TICKETS — PURPLE, big, commanding ══ */
 .get-ticket-btn, .btn-primary.get-ticket-btn {
-  background: linear-gradient(180deg, var(--helm-purple) 0%, var(--helm-purple-dark) 100%) !important;
-  color: var(--helm-white) !important;
-  border: 3px solid var(--helm-gold) !important;
+  background: linear-gradient(180deg, #FBAE1B 0%, #e89c10 100%) !important;
+  color: var(--helm-purple-dark) !important;
+  border: 3px solid var(--helm-purple) !important;
   font-family: var(--helm-font) !important;
   font-size: 28px !important;
   letter-spacing: 5px !important;
   border-radius: 30px !important;
   padding: 20px 36px !important;
-  box-shadow: 0 6px 24px rgba(110,0,149,.4), inset 0 1px 0 rgba(255,255,255,.15) !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,.25), 0 0 0 0 rgba(251,174,27,0) !important;
   transition: all 0.3s cubic-bezier(.4,0,.2,1) !important;
   position: relative !important;
   overflow: hidden !important;
   text-align: center !important;
   display: block !important;
   width: 100% !important;
-  animation: helm-pulse 2.5s ease-in-out infinite !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,.3) !important;
+  animation: helm-pulse 2s ease-in-out infinite !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.3) !important;
 }
 @keyframes helm-pulse {
-  0%, 100% { box-shadow: 0 6px 24px rgba(110,0,149,.4), inset 0 1px 0 rgba(255,255,255,.15); }
-  50% { box-shadow: 0 8px 32px rgba(110,0,149,.5), 0 0 0 5px rgba(251,174,27,.3), inset 0 1px 0 rgba(255,255,255,.15); }
+  0%, 100% { box-shadow: 0 6px 24px rgba(0,0,0,.25), 0 0 0 0 rgba(251,174,27,0); }
+  50% { box-shadow: 0 8px 28px rgba(0,0,0,.3), 0 0 0 6px rgba(251,174,27,.25); }
 }
 .get-ticket-btn::after {
   content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.3) 0%, transparent 50%) !important;
+  pointer-events: none !important;
 }
 .get-ticket-btn:hover {
   transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 0 10px 36px rgba(110,0,149,.5), 0 0 0 5px rgba(251,174,27,.4) !important;
+  box-shadow: 0 10px 32px rgba(0,0,0,.35), 0 0 0 6px rgba(110,0,149,.2) !important;
   animation: none !important;
-  background: linear-gradient(180deg, #8200b3 0%, var(--helm-purple) 100%) !important;
+  background: linear-gradient(180deg, #f5b82e 0%, #FBAE1B 100%) !important;
 }
 
 /* ══ ORDER LOOKUP — GOLD, complementary to purple CTA ══ */
