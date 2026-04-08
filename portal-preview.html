@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Helm & Sons — Portal Preview (v10)</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<!-- ═══ SIMULATED PORTAL BASE CSS (from ETicketStyle.css) ═══ -->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;font-size:16px;color:#4a4a4a;background:#F8F9FF;line-height:1.5}
+a{color:#5A78FF;text-decoration:none;transition:all .3s}
+img{max-width:100%;display:block}
+h6{font-size:14px;font-weight:700;color:#505053;text-transform:uppercase;letter-spacing:1px;padding-bottom:10px;margin-top:24px}
+ul{list-style:none;padding:0}
+li{padding:4px 0;font-size:15px}
+
+.header-top{height:195px;background:#5A78FF url('https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_637180772673699343.jpg') center/cover no-repeat;display:flex;justify-content:space-between;align-items:flex-start;padding:20px 26px;position:relative}
+.header-top .back-btn{height:36px;width:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#5A78FF;cursor:pointer;border:none;margin-top:30px;transition:all .3s}
+.eventdetail-share .da-share-html span{color:#fff;font-weight:600;font-size:14px}
+.btn{font-size:16px;padding:8px 20px;font-weight:600;border:none;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:#5A78FF;color:#fff;border:2px solid #5A78FF}
+.btn img{width:18px}
+
+.header-bottom{display:flex;padding:20px 34px;align-items:flex-start;gap:20px;background:#fff;flex-wrap:wrap}
+.main-heading{display:flex;align-items:flex-start;gap:16px;width:100%}
+.logo{height:84px;width:84px;border-radius:50%;overflow:hidden;flex-shrink:0;border:3px solid #eee;background:#fafafa;display:flex;align-items:center;justify-content:center}
+.logo img{width:100%;height:100%;object-fit:cover}
+.event-details h1{font-size:28px;font-weight:800;color:#333;line-height:1.2;padding-bottom:4px}
+.event-details p{font-size:16px;color:#505053}
+.primary-link{color:#5A78FF;font-weight:600;font-size:14px}
+
+.opening-time{margin-left:auto;margin-top:10px}
+.opening-time ul{display:flex;gap:10px}
+.opening-time ul li{min-width:74px;display:flex;align-items:center;justify-content:center;flex-direction:column;min-height:89px;background:#fff;box-shadow:0 0 10px rgba(55,70,95,.12);border-radius:4px}
+.opening-time ul li p{font-size:42px;padding-bottom:3px;font-weight:300;line-height:48px;color:#4a4a4a}
+.opening-time ul li span{font-size:14px;line-height:20px;color:#4a4a4a}
+.opening-time a.primary-link{font-size:14px;text-align:center;display:block;margin-top:12px}
+
+.get-ticket-btn{width:100%;padding:16px;font-size:22px;font-weight:800;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;margin:0;background:#5A78FF;color:#fff}
+
+.order-lookup{text-align:center;padding:16px 20px;background:#fff}
+.lookup-btn{font-size:16px;padding:8px 30px;background:#fff!important;color:#000;border:2px solid #5A78FF;margin-top:6px;cursor:pointer;border-radius:4px;display:inline-flex;align-items:center;gap:6px}
+
+.event-details-wrapper{display:flex;padding:20px 34px;gap:40px;align-items:flex-start}
+.event-details-wrapper .left{flex:1;background:#fff;border:1px solid #D8D8D8;padding:40px;box-shadow:0 0 10px rgba(55,70,95,.12);border-radius:4px;min-width:0}
+.event-details-wrapper .right{width:300px;flex-shrink:0}
+.event-details-wrapper .right .btn-primary.get-ticket-btn{margin-bottom:16px}
+
+.footer{padding:16px 34px;background:#f8f9ff}
+.copyright{font-size:13px;color:#888;text-align:center}
+.copyright a{color:#5A78FF}
+
+.single-header{background:#5A78FF;padding:16px 20px;color:#fff;display:flex;align-items:center;gap:12px;border-radius:4px 4px 0 0}
+.single-header .logo-wrapper{height:56px;width:56px;border-radius:50%;background:#fafafa;border:3px solid #fff;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.single-header .close{height:32px;width:32px;border-radius:50%;background:linear-gradient(180deg,#5950E9,#413AA4);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;margin-left:auto;color:#fff;font-size:18px}
+.rules-instruction-title{font-size:20px;color:#fff;font-weight:700}
+.btn-cancel{background:transparent;border:2px solid #5A78FF;color:#5A78FF;padding:8px 20px;border-radius:4px;cursor:pointer}
+.body-title{font-size:18px;font-weight:600;color:#44566C}
+
+@media(max-width:768px){
+  .event-details-wrapper{flex-direction:column;padding:16px}
+  .event-details-wrapper .right{width:100%}
+  .header-bottom{padding:16px}
+  .opening-time{margin-left:0;margin-top:16px}
+  .opening-time ul li{min-width:60px;min-height:70px}
+  .opening-time ul li p{font-size:28px}
+}
+</style>
+
+<!-- ═══ HELM BRAND OVERRIDE v10 — portal shell + refined landing content ═══ -->
+<style>
+:root {
+  --helm-purple: #6E0095;
+  --helm-purple-dark: #4a0066;
+  --helm-purple-deep: #2d003d;
+  --helm-gold: #FBAE1B;
+  --helm-gold-dark: #d4940f;
+  --helm-green: #3ca214;
+  --helm-white: #ffffff;
+  --helm-font: 'Bebas Neue', 'Impact', 'Arial Narrow', sans-serif;
+  --helm-body: 'Manrope', sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #f3e8ff 0%, #faf5ff 40%, #fffbeb 100%) !important;
+}
+
+/* ══ HIDE full-width Get Tickets + Order Lookup above the two-column layout ══
+   These are portal elements between the header and .event-details-wrapper.
+   Only the sidebar (.right) versions should show on desktop. */
+.wrapper > .get-ticket-btn,
+.wrapper > button.get-ticket-btn,
+header ~ .get-ticket-btn,
+header ~ button.get-ticket-btn { display: none !important; }
+.order-lookup-mobile { display: none !important; }
+
+/* Close the gap left by hiding those elements */
+.event-details-wrapper,
+.main-content.event-details-wrapper {
+  margin-top: 0 !important;
+  padding-top: 20px !important;
+}
+
+/* Show them back on mobile when sidebar collapses */
+@media (max-width: 768px) {
+  .wrapper > .get-ticket-btn,
+  .wrapper > button.get-ticket-btn,
+  header ~ .get-ticket-btn,
+  header ~ button.get-ticket-btn { display: block !important; text-align: center !important; }
+  .order-lookup-mobile { display: block !important; }
+  .event-details-wrapper,
+  .main-content.event-details-wrapper { padding-top: 0 !important; }
+}
+
+/* ══ HEADER TOP ══ */
+.header-top {
+  background: url('https://helmandsons.com/images/site/template/btn-rides.jpg') center/cover no-repeat !important;
+  position: relative !important;
+  height: 120px !important;
+  min-height: unset !important;
+  padding: 14px 20px !important;
+  align-items: center !important;
+}
+.header-top::before {
+  content: '';position:absolute;inset:0;
+  background: linear-gradient(135deg, rgba(110,0,149,.92), rgba(74,0,102,.88) 50%, rgba(45,0,61,.85)) !important;
+  z-index:0;
+}
+.header-top > * { position:relative;z-index:1; }
+.header-top .back-btn {
+  background: var(--helm-gold) !important;
+  box-shadow: 0 2px 8px rgba(251,174,27,.4) !important;
+  margin-top: 0 !important;
+}
+.header-top .back-btn img { filter: brightness(0) !important; }
+.eventdetail-share .btn-primary {
+  background: rgba(255,255,255,.12) !important;
+  border: 2px solid var(--helm-gold) !important;
+  border-radius: 30px !important;
+}
+
+/* ══ HEADER BOTTOM — tight, no wasted space ══ */
+.header-bottom {
+  background: var(--helm-white) !important;
+  border-bottom: 3px solid var(--helm-gold) !important;
+  padding: 10px 20px !important;
+  gap: 8px !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+}
+.main-heading {
+  gap: 10px !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  width: auto !important;
+  flex: 1 !important;
+}
+/* Logo — purple ring + gold glow, clean background */
+.logo {
+  border: 4px solid var(--helm-purple) !important;
+  box-shadow: 0 0 0 3px var(--helm-gold), 0 4px 20px rgba(110,0,149,.2) !important;
+  background: #fafafa !important;
+}
+.logo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  padding: 4px !important;
+}
+.event-details {
+  padding-left: 0 !important;
+}
+.event-details h1 {
+  font-family: var(--helm-font) !important;
+  color: var(--helm-purple) !important;
+  font-size: 28px !important;
+  letter-spacing: 2px !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  line-height: 1.1 !important;
+}
+.event-details p {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  font-size: 14px !important;
+}
+.event-details .primary-link {
+  font-size: 13px !important;
+}
+
+/* ══ COUNTDOWN — compact, sits beside event info ══ */
+.opening-time {
+  margin-top: 0 !important;
+  margin-left: auto !important;
+  flex-shrink: 0 !important;
+}
+.opening-time ul {
+  gap: 6px !important;
+}
+.opening-time ul li {
+  background: linear-gradient(180deg, var(--helm-purple), var(--helm-purple-dark)) !important;
+  border-radius: 10px !important;
+  border: 2px solid var(--helm-gold) !important;
+  box-shadow: 0 3px 12px rgba(110,0,149,.25) !important;
+  min-width: 62px !important;
+  min-height: 72px !important;
+}
+.opening-time ul li p {
+  color: #fff !important;
+  font-family: var(--helm-font) !important;
+  font-weight: 900 !important;
+  font-size: 34px !important;
+  line-height: 38px !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,.3) !important;
+}
+.opening-time ul li span {
+  color: var(--helm-gold) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  font-size: 10px !important;
+}
+.opening-time > a { color: var(--helm-gold) !important; font-weight: 700 !important; font-size: 12px !important; }
+
+/* ══ GET TICKETS — PURPLE, big, commanding ══ */
+.get-ticket-btn, .btn-primary.get-ticket-btn {
+  background: linear-gradient(180deg, var(--helm-purple) 0%, var(--helm-purple-dark) 100%) !important;
+  color: var(--helm-white) !important;
+  border: 3px solid var(--helm-gold) !important;
+  font-family: var(--helm-font) !important;
+  font-size: 28px !important;
+  letter-spacing: 5px !important;
+  border-radius: 30px !important;
+  padding: 20px 36px !important;
+  box-shadow: 0 6px 24px rgba(110,0,149,.4), inset 0 1px 0 rgba(255,255,255,.15) !important;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+  animation: helm-pulse 2.5s ease-in-out infinite !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,.3) !important;
+}
+@keyframes helm-pulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(110,0,149,.4), inset 0 1px 0 rgba(255,255,255,.15); }
+  50% { box-shadow: 0 8px 32px rgba(110,0,149,.5), 0 0 0 5px rgba(251,174,27,.3), inset 0 1px 0 rgba(255,255,255,.15); }
+}
+.get-ticket-btn::after {
+  content: '' !important;
+}
+.get-ticket-btn:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 10px 36px rgba(110,0,149,.5), 0 0 0 5px rgba(251,174,27,.4) !important;
+  animation: none !important;
+  background: linear-gradient(180deg, #8200b3 0%, var(--helm-purple) 100%) !important;
+}
+
+/* ══ ORDER LOOKUP — GOLD, complementary to purple CTA ══ */
+
+/* ══ RIGHT SIDEBAR ══ */
+.event-details-wrapper .right h6 {
+  color: var(--helm-purple) !important;
+  font-family: var(--helm-font) !important;
+  font-size: 16px !important;
+  letter-spacing: 3px !important;
+  border-bottom: 2px solid var(--helm-gold) !important;
+  padding-bottom: 8px !important;
+}
+.event-details-wrapper .right a { color: var(--helm-purple) !important; }
+.event-details-wrapper .right a:hover { color: var(--helm-gold) !important; }
+
+/* ══ ORDER LOOKUP — gold to contrast purple Get Tickets ══ */
+.order-lookup .btn,
+.order-lookup-mobile .btn,
+.lookup-btn {
+  background: linear-gradient(180deg, var(--helm-gold), #e89c10) !important;
+  border: 2px solid var(--helm-purple) !important;
+  color: var(--helm-purple-dark) !important;
+  border-radius: 30px !important;
+  font-family: var(--helm-font) !important;
+  font-weight: 800 !important;
+  font-size: 16px !important;
+  letter-spacing: 2px !important;
+  padding: 10px 24px !important;
+  transition: all 0.3s ease !important;
+}
+.order-lookup .btn:hover,
+.lookup-btn:hover {
+  background: linear-gradient(180deg, #f5b82e, var(--helm-gold)) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 16px rgba(251,174,27,.4) !important;
+}
+
+/* ══ LEFT CONTENT AREA ══ */
+.event-details-wrapper .left {
+  border: 1px solid #e9d5f5 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 16px rgba(110,0,149,.06) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ══ BTN-PRIMARY (generic) ══ */
+.btn-primary:not(.get-ticket-btn):not(.btn-s) {
+  background: var(--helm-purple) !important;
+  border-color: var(--helm-purple) !important;
+  border-radius: 30px !important;
+}
+
+/* ══ FOOTER ══ */
+.copyright, .footer {
+  background: var(--helm-purple-dark) !important;
+  position: relative !important;
+  color: rgba(255,255,255,.8) !important;
+}
+.copyright a { color: var(--helm-gold) !important; font-weight: 700 !important; }
+
+/* ══ MODALS ══ */
+.single-header {
+  background: linear-gradient(135deg, var(--helm-purple), var(--helm-purple-dark)) !important;
+  border-bottom: 3px solid var(--helm-gold) !important;
+}
+.single-header .logo-wrapper {
+  border: 3px solid var(--helm-gold) !important;
+  box-shadow: 0 2px 8px rgba(251,174,27,.3) !important;
+}
+.single-header .close {
+  background: linear-gradient(180deg, var(--helm-purple), var(--helm-purple-dark)) !important;
+  border: 2px solid var(--helm-gold) !important;
+}
+.btn-cancel {
+  border: 2px solid var(--helm-purple) !important;
+  color: var(--helm-purple) !important;
+  border-radius: 30px !important;
+}
+.rules-instruction-title {
+  font-family: var(--helm-font) !important;
+  letter-spacing: 2px !important;
+}
+
+/* ══════════════════════════════════════════════
+   TICKET DETAILS PAGE (after clicking Get Tickets)
+   ══════════════════════════════════════════════ */
+
+/* Two-column layout inherits portal override */
+.ticket-details-wrapper .left {
+  border: 1px solid #e9d5f5 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 12px rgba(110,0,149,.06) !important;
+}
+.ticket-details-wrapper .right {
+  border: 1px solid #e9d5f5 !important;
+  border-radius: 12px !important;
+}
+
+/* Accordion headers — purple instead of blue */
+.tab__label,
+.tab__close {
+  background: var(--helm-purple) !important;
+  color: #fff !important;
+}
+.tab__label:hover {
+  background: var(--helm-purple-dark) !important;
+}
+.accordion {
+  border-color: var(--helm-purple) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+/* Date cards — Helm brand on selection */
+.date-card {
+  border-radius: 12px !important;
+  transition: all 0.2s ease !important;
+}
+.date-card.available:hover {
+  border-color: var(--helm-purple) !important;
+  box-shadow: 0 4px 12px rgba(110,0,149,.12) !important;
+}
+.date-card.selected {
+  background: linear-gradient(135deg, rgba(110,0,149,.08), rgba(251,174,27,.08)) !important;
+  border-color: var(--helm-purple) !important;
+  box-shadow: 0 0 0 2px var(--helm-gold) !important;
+}
+.available .status {
+  color: var(--helm-green) !important;
+}
+
+/* Ticket count badge */
+.ticket-count {
+  background-color: var(--helm-purple) !important;
+  color: #fff !important;
+}
+
+/* My tickets cart sidebar */
+.my-tickets-section .my-tickets-div {
+  border: 2px solid var(--helm-purple) !important;
+  border-radius: 12px !important;
+}
+
+/* Cart badge */
+.cart-badge {
+  background: var(--helm-gold) !important;
+  color: var(--helm-purple-dark) !important;
+  font-weight: 800 !important;
+}
+
+/* More info link */
+.plan-description-more-info .more-info {
+  color: var(--helm-purple) !important;
+  font-weight: 600 !important;
+}
+
+/* Plus/minus quantity buttons */
+.plus-minus a:hover {
+  background-color: #f3e8ff !important;
+  border-color: var(--helm-purple) !important;
+}
+
+/* Checkout bar — fixed bottom */
+.checkout-bar {
+  background: linear-gradient(135deg, var(--helm-purple), var(--helm-purple-dark)) !important;
+  border-top: 3px solid var(--helm-gold) !important;
+  box-shadow: 0 -4px 20px rgba(110,0,149,.3) !important;
+}
+.checkout-bar div {
+  color: #fff !important;
+}
+.checkout-bar .text-primary,
+.checkout-bar .text-primary span {
+  color: var(--helm-gold) !important;
+  font-weight: 800 !important;
+}
+.checkout-btn,
+.checkout-bar .btn-primary {
+  background: linear-gradient(135deg, var(--helm-gold), #f5a623) !important;
+  color: var(--helm-purple-dark) !important;
+  border: none !important;
+  border-radius: 30px !important;
+  font-family: var(--helm-font) !important;
+  font-size: 18px !important;
+  letter-spacing: 2px !important;
+  font-weight: 800 !important;
+  padding: 12px 28px !important;
+  box-shadow: 0 4px 16px rgba(251,174,27,.4) !important;
+}
+.checkout-btn:hover,
+.checkout-bar .btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 24px rgba(251,174,27,.6) !important;
+}
+
+/* Cart modal */
+.cart-modal .single-header,
+.cart-modal .modal-header {
+  background: linear-gradient(135deg, var(--helm-purple), var(--helm-purple-dark)) !important;
+  border-bottom: 3px solid var(--helm-gold) !important;
+}
+
+/* View ticket details modal */
+.viewTicket-Details-modal .modal-content {
+  background-color: var(--helm-purple-dark) !important;
+  border-radius: 16px !important;
+}
+
+/* Plan table header text */
+.buy-ticket-dialog .table th:first-child,
+.plan-list th {
+  color: var(--helm-purple) !important;
+  font-family: var(--helm-font) !important;
+}
+
+/* Form controls */
+.form-group .form-control:focus {
+  border-color: var(--helm-purple) !important;
+  box-shadow: 0 0 0 3px rgba(110,0,149,.12) !important;
+}
+
+/* Lookup div in ticket details */
+.lookup-div .lookup-btn {
+  background: var(--helm-purple) !important;
+  border-color: var(--helm-purple) !important;
+  color: #fff !important;
+  border-radius: 30px !important;
+}
+
+/* Content blocks */
+.content-block {
+  border: 1px solid #e9d5f5 !important;
+  border-radius: 12px !important;
+}
+
+/* ══════════════════════════════════════════════
+   CHECKOUT PAGE
+   ══════════════════════════════════════════════ */
+.checkout-search .heading-block .btn {
+  background: var(--helm-purple) !important;
+  border-radius: 30px !important;
+}
+.email-number-outer .custom-control-input:checked~.custom-control-label:before {
+  border-color: var(--helm-purple) !important;
+}
+.order-summery-table tbody tr.large-text td {
+  color: var(--helm-purple) !important;
+}
+
+/* ══ SCROLLBAR / SELECTION ══ */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#f3e8ff}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--helm-purple),var(--helm-purple-dark));border-radius:4px}
+::selection{background:var(--helm-purple);color:#fff}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:767px){
+  .get-ticket-btn{font-size:18px!important;padding:12px 24px!important}
+  .event-details h1{font-size:26px!important}
+}
+
+/* ═══════════════════════════════════
+   LANDING PAGE CONTENT STYLES
+   (inside PageDescription)
+   ═══════════════════════════════════ */
+
+/* Sale deadline bar */
+.helm-sale-bar {
+  background: linear-gradient(90deg, var(--helm-gold), #f5a623, var(--helm-gold));
+  padding: 14px 20px;
+  text-align: center;
+  position: relative;
+}
+.helm-sale-bar::before {
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,.06) 10px,rgba(255,255,255,.06) 20px);
+  pointer-events:none;
+}
+.helm-sale-bar .sale-title {
+  font-family: var(--helm-font);
+  font-size: 14px;
+  color: var(--helm-purple-dark);
+  letter-spacing: 3px;
+  position: relative;
+}
+.helm-sale-bar .sale-countdown {
+  display:flex;justify-content:center;gap:6px;margin-top:8px;position:relative;
+}
+.helm-sale-bar .sale-countdown .cd-box {
+  background:linear-gradient(180deg,var(--helm-purple),var(--helm-purple-dark));
+  border-radius:10px;padding:6px 10px;min-width:50px;text-align:center;
+  border:2px solid rgba(255,255,255,.2);box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+.helm-sale-bar .sale-countdown .cd-num {
+  font-family:var(--helm-font);font-size:26px;color:#fff;line-height:1;
+}
+.helm-sale-bar .sale-countdown .cd-label {
+  font-size:8px;font-weight:800;color:var(--helm-gold);text-transform:uppercase;
+  letter-spacing:1.5px;margin-top:2px;
+}
+
+/* Plan cards */
+.helm-plans { padding:24px 20px; }
+.helm-section-label {
+  text-align:center;margin-bottom:16px;
+}
+.helm-section-label .badge {
+  display:inline-block;padding:6px 20px;border-radius:30px;
+  font-family:var(--helm-font);font-size:14px;letter-spacing:3px;
+}
+.helm-section-label .badge-gold {
+  background:linear-gradient(135deg,var(--helm-gold),#f5a623);
+  color:var(--helm-purple-dark);box-shadow:0 3px 12px rgba(251,174,27,.3);
+}
+.helm-section-label .badge-outline {
+  background:#fff;border:2px solid var(--helm-purple);color:var(--helm-purple);
+}
+.helm-section-label .sub { font-size:14px;color:#888;margin-top:4px; }
+
+.helm-cards { display:flex;gap:10px;margin-bottom:20px; }
+.helm-card {
+  flex:1;border-radius:16px;overflow:hidden;position:relative;
+  cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.helm-card:hover { transform:translateY(-4px);box-shadow:0 16px 32px rgba(0,0,0,.2)!important; }
+.helm-card-bg { position:absolute;inset:0;background-size:cover;background-position:center; }
+.helm-card-overlay { position:absolute;inset:0; }
+.helm-card-content {
+  position:relative;z-index:1;padding:20px 14px 16px;text-align:center;
+  display:flex;flex-direction:column;height:100%;
+}
+.helm-card .plan-name {
+  font-family:var(--helm-font);font-size:18px;color:#fff;letter-spacing:3px;line-height:1.2;
+}
+.helm-card .plan-price {
+  font-family:var(--helm-font);font-size:54px;color:#fff;line-height:1;
+  margin:8px 0 4px;text-shadow:0 2px 8px rgba(0,0,0,.3);
+}
+.helm-card .plan-desc { font-size:14px;color:rgba(255,255,255,.9);font-weight:500; }
+.helm-card .plan-savings {
+  margin-top:auto;padding-top:12px;
+}
+.helm-card .savings-box {
+  background:rgba(34,197,94,.2);border:2px solid #4ade80;border-radius:10px;padding:8px 6px;
+}
+.helm-card .savings-amount {
+  font-family:var(--helm-font);font-size:22px;color:#4ade80;letter-spacing:1px;
+}
+.helm-card .savings-gate {
+  font-size:12px;color:rgba(255,255,255,.6);text-decoration:line-through;margin-top:2px;
+}
+.helm-card-featured { flex:1.15; }
+.helm-card-featured .ribbon {
+  position:absolute;top:12px;right:-30px;transform:rotate(45deg);z-index:3;
+  background:var(--helm-gold);color:var(--helm-purple-dark);font-family:var(--helm-font);
+  font-size:11px;letter-spacing:2px;padding:3px 34px;box-shadow:0 2px 6px rgba(0,0,0,.2);
+}
+.helm-card .gold-savings {
+  background:rgba(251,174,27,.2);border:2px solid var(--helm-gold);border-radius:10px;padding:8px 6px;
+}
+.helm-card .gold-savings .savings-amount {
+  color:var(--helm-gold);
+}
+
+/* Feature strip */
+.helm-features {
+  display:flex;gap:6px;padding:0 20px 20px;
+}
+.helm-feature {
+  flex:1;border-radius:12px;overflow:hidden;position:relative;height:100px;
+  cursor:pointer;transition:all .3s;
+}
+.helm-feature:hover { transform:scale(1.03);box-shadow:0 8px 24px rgba(0,0,0,.15); }
+.helm-feature-bg { position:absolute;inset:0;background-size:cover;background-position:center; }
+.helm-feature-overlay { position:absolute;inset:0; }
+.helm-feature-content {
+  position:relative;z-index:1;padding:12px;display:flex;flex-direction:column;
+  justify-content:flex-end;height:100%;
+}
+.helm-feature-content .feat-icon { font-size:20px; }
+.helm-feature-content .feat-label {
+  font-family:var(--helm-font);font-size:16px;color:#fff;letter-spacing:1px;margin-top:2px;
+}
+
+/* Notices */
+.helm-notices { padding:0 20px 20px; }
+.helm-notice {
+  border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:13px;line-height:1.5;
+}
+.helm-notice-warn { background:#fefce8;border:1px solid #fbbf24; }
+.helm-notice-warn .notice-title { font-weight:800;color:#92400e;font-size:13px;margin-bottom:2px; }
+.helm-notice-warn .notice-body { color:#666; }
+.helm-notice-danger { background:#fef2f2;border:1px solid #f87171; }
+.helm-notice-danger .notice-title { font-weight:800;color:#dc2626;font-size:13px;margin-bottom:2px; }
+.helm-notice-danger .notice-body { color:#666; }
+
+/* Contact footer */
+.helm-contact {
+  background:linear-gradient(135deg,var(--helm-purple),var(--helm-purple-dark));
+  padding:20px;text-align:center;
+}
+.helm-contact .contact-logo { height:36px;margin:0 auto 8px; filter:drop-shadow(0 2px 4px rgba(0,0,0,.3)); }
+.helm-contact .contact-title {
+  font-family:var(--helm-font);font-size:18px;color:#fff;letter-spacing:2px;
+}
+.helm-contact .contact-info { font-size:14px;color:var(--helm-gold);font-weight:700;margin-top:4px; }
+.helm-contact .contact-address { font-size:13px;color:rgba(255,255,255,.7);margin-top:6px; }
+
+/* Responsive for cards */
+@media(max-width:600px){
+  .helm-cards{flex-direction:column}
+  .helm-card{min-height:180px}
+  .helm-card-featured{flex:1}
+  .helm-features{flex-direction:column}
+  .helm-feature{height:80px}
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="header event-header">
+    <div class="header-top">
+      <a href="#" class="back-btn">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z'/%3E%3C/svg%3E" alt="Back">
+      </a>
+      <div class="eventdetail-share" style="margin-left:auto;display:flex;align-items:center;">
+        <button class="btn btn-primary btn-s" style="margin-left:auto;">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z'/%3E%3C/svg%3E" alt="Share">
+          <span class="da-share-html"><span>Share</span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-bottom">
+      <div class="main-heading" style="width:100%;display:flex;align-items:flex-start;flex-wrap:wrap;">
+        <div class="logo">
+          <a><img src="https://helmandsons.com/images/site/template/logo.png" alt="Helm & Sons"></a>
+        </div>
+        <div class="event-details" style="flex:1;padding-left:8px;">
+          <h1>Spring Break Extravaganza</h1>
+          <p>Apr 09 - Apr 12, 2026</p>
+          <a class="primary-link" href="https://helmandsons.com" target="_blank" style="color:var(--helm-purple);">helmandsons.com</a>
+        </div>
+      </div>
+      <div class="opening-time" id="timer">
+        <ul>
+          <li><p>01</p><span>Days</span></li>
+          <li><p>14</p><span>Hours</span></li>
+          <li><p>32</p><span>Minutes</span></li>
+          <li><p>08</p><span>Seconds</span></li>
+        </ul>
+        <a href="#" class="primary-link" style="text-align:center;display:block;margin-top:10px;">Time to Grand Opening</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Get Tickets + Order Lookup (mobile only — hidden on desktop by CSS override) -->
+  <button class="btn btn-primary get-ticket-btn" type="button" style="text-align:center;">Get Tickets</button>
+  <div class="order-lookup-mobile" style="text-align:center;padding:16px 20px;background:#fff;">
+    <span style="font-size:12px;color:#999;font-weight:600;letter-spacing:1px;text-transform:uppercase;">ALREADY BOUGHT TICKETS?</span><br>
+    <button class="btn lookup-btn" style="margin-top:6px;">🔍 Order Lookup</button>
+  </div>
+
+  <!-- ═══ TWO-COLUMN LAYOUT ═══ -->
+  <main class="main-content event-details-wrapper">
+
+    <!-- LEFT — PageDescription content -->
+    <div class="left">
+
+      <!-- ══ SALE DEADLINE BAR ══ -->
+      <div class="helm-sale-bar">
+        <div class="sale-title">⏰ ONLINE SPECIALS END APRIL 8 AT 11:59 PM</div>
+        <div class="sale-countdown">
+          <div class="cd-box"><div class="cd-num" id="hc-d">01</div><div class="cd-label">Days</div></div>
+          <div class="cd-box"><div class="cd-num" id="hc-h">14</div><div class="cd-label">Hrs</div></div>
+          <div class="cd-box"><div class="cd-num" id="hc-m">32</div><div class="cd-label">Min</div></div>
+          <div class="cd-box"><div class="cd-num" id="hc-s">08</div><div class="cd-label">Sec</div></div>
+        </div>
+      </div>
+
+      <!-- ══ WRISTBAND PLANS ══ -->
+      <div class="helm-plans">
+        <div class="helm-section-label">
+          <div class="badge badge-gold">🎉 ADVANCE SALE SPECIALS</div>
+          <div class="sub">Buy early & save BIG vs. gate prices</div>
+        </div>
+
+        <div class="helm-cards" style="min-height:270px;">
+          <!-- Unlimited Rides -->
+          <div class="helm-card" style="box-shadow:0 4px 16px rgba(110,0,149,.12);">
+            <div class="helm-card-bg" style="background-image:url('https://helmandsons.com/images/site/template/btn-rides.jpg');"></div>
+            <div class="helm-card-overlay" style="background:linear-gradient(180deg,rgba(110,0,149,.72),rgba(55,0,85,.94));"></div>
+            <div class="helm-card-content">
+              <div class="plan-name">UNLIMITED<br>RIDES</div>
+              <div class="plan-price hp-pre">$30</div>
+              <div class="plan-price hp-reg" style="display:none">$50</div>
+              <div class="plan-desc">All day, all rides</div>
+              <div class="plan-savings hp-pre">
+                <div class="savings-box">
+                  <div class="savings-amount">SAVE $20</div>
+                  <div class="savings-gate">Gate: $50</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Unlimited + WoW Express -->
+          <div class="helm-card helm-card-featured" style="border:3px solid var(--helm-gold);box-shadow:0 6px 24px rgba(251,174,27,.25);">
+            <div class="ribbon">BEST VALUE</div>
+            <div class="helm-card-bg" style="background-image:url('https://magicmoneyapp.s3.amazonaws.com/MagicMoneyWeb_637180781903669695.jpg');"></div>
+            <div class="helm-card-overlay" style="background:linear-gradient(180deg,rgba(74,0,102,.75),rgba(45,0,61,.94));"></div>
+            <div class="helm-card-content">
+              <div class="plan-name">UNLIMITED RIDES<br>+ WOW EXPRESS</div>
+              <div class="plan-price hp-pre">$50</div>
+              <div class="plan-price hp-reg" style="display:none">$80</div>
+              <div class="plan-desc" style="font-weight:700;">Skip every line all day!</div>
+              <div class="plan-savings hp-pre">
+                <div class="savings-box">
+                  <div class="savings-amount">SAVE $30</div>
+                  <div class="savings-gate">Gate: $80</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Online Specials -->
+        <div class="helm-section-label" style="margin-top:4px;">
+          <div class="badge badge-outline">🎯 ONLINE SPECIALS</div>
+        </div>
+
+        <div class="helm-cards" style="min-height:210px;">
+          <!-- Game Pass -->
+          <div class="helm-card" style="box-shadow:0 4px 16px rgba(60,162,20,.12);">
+            <div class="helm-card-overlay" style="background:linear-gradient(145deg,#3ca214,#2d8a0e,#1f6b09);"></div>
+            <div class="helm-card-content">
+              <div style="font-size:32px;">🎯</div>
+              <div class="plan-name" style="margin-top:4px;">GAME PASS</div>
+              <div class="plan-price" style="font-size:46px;">$50</div>
+              <div class="plan-desc">$100 in game credits</div>
+              <div class="plan-savings">
+                <div class="gold-savings">
+                  <div class="savings-amount">HALF PRICE!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Family Meal Deal -->
+          <div class="helm-card" style="flex:1.3;box-shadow:0 4px 16px rgba(219,39,119,.12);">
+            <div class="helm-card-overlay" style="background:linear-gradient(145deg,#ec4899,#db2777,#be185d);"></div>
+            <div style="position:absolute;top:8px;right:10px;font-size:34px;opacity:.12;z-index:0;">🍟</div>
+            <div class="helm-card-content">
+              <div class="plan-name" style="font-size:14px;">🍔 FAMILY MEAL DEAL</div>
+              <div class="plan-price" style="font-size:46px;">$50</div>
+              <div class="plan-desc" style="line-height:1.4;">4 corn dogs · 4 drinks<br>cotton candy · popcorn</div>
+              <div class="plan-savings">
+                <div class="gold-savings">
+                  <div class="savings-amount" style="font-size:16px;">Worth $111 — save 50%+!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ FEATURE STRIP ══ -->
+      <div class="helm-features">
+        <div class="helm-feature">
+          <div class="helm-feature-bg" style="background-image:url('https://helmandsons.com/images/site/template/btn-rides.jpg');"></div>
+          <div class="helm-feature-overlay" style="background:linear-gradient(180deg,rgba(110,0,149,.2),rgba(74,0,102,.88));"></div>
+          <div class="helm-feature-content">
+            <div class="feat-icon">🎠</div>
+            <div class="feat-label">RIDES</div>
+          </div>
+        </div>
+        <div class="helm-feature">
+          <div class="helm-feature-bg" style="background-image:url('https://helmandsons.com/images/site/template/home-tix.jpg');"></div>
+          <div class="helm-feature-overlay" style="background:linear-gradient(180deg,rgba(251,174,27,.2),rgba(212,148,15,.88));"></div>
+          <div class="helm-feature-content">
+            <div class="feat-icon">🍩</div>
+            <div class="feat-label">FOOD</div>
+          </div>
+        </div>
+        <div class="helm-feature">
+          <div class="helm-feature-bg" style="background-image:url('https://helmandsons.com/images/site/template/btn-bounces.jpg');"></div>
+          <div class="helm-feature-overlay" style="background:linear-gradient(180deg,rgba(60,162,20,.2),rgba(34,120,10,.88));"></div>
+          <div class="helm-feature-content">
+            <div class="feat-icon">🎯</div>
+            <div class="feat-label">GAMES</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ NOTICES ══ -->
+      <div class="helm-notices">
+        <div class="helm-notice helm-notice-warn">
+          <div class="notice-title">⚠️ Wristband Rules</div>
+          <div class="notice-body"><strong>One person, one day.</strong> Must be worn on wrist. Non-transferable. Height requirements apply. No open-toed shoes. <strong>All sales final.</strong></div>
+        </div>
+        <div class="helm-notice helm-notice-danger">
+          <div class="notice-title">💳 Credit Card Notice</div>
+          <div class="notice-body">Address must match your credit card on file. Visa, MC, Amex only. <strong>No gift cards.</strong></div>
+        </div>
+      </div>
+
+      <!-- ══ CONTACT FOOTER ══ -->
+      <div class="helm-contact">
+        <img src="https://helmandsons.com/images/site/template/f-logo.png" class="contact-logo" alt="Helm & Sons">
+        <div class="contact-title">NEED HELP?</div>
+        <div class="contact-info">info@helmandsons.com · (909) 422-0776</div>
+        <div class="contact-address">📍 Silver Lakes, 5555 Hamner Ave, Norco, CA · April 9–12</div>
+      </div>
+
+    </div>
+
+    <!-- ═══ RIGHT SIDEBAR ═══ -->
+    <div class="right">
+      <button class="btn btn-primary get-ticket-btn" type="button">Get Tickets</button>
+
+      <div class="order-lookup" style="margin-top:16px;border-radius:12px;padding:16px;">
+        <span style="font-size:12px;color:#999;font-weight:600;letter-spacing:1px;text-transform:uppercase;">ALREADY BOUGHT TICKETS?</span><br>
+        <button class="btn lookup-btn" style="margin-top:8px;">🔍 Order Lookup</button>
+      </div>
+
+      <h6>Dates</h6>
+      <strong>Apr 09 - Apr 12, 2026</strong>
+
+      <h6>Location</h6>
+      <p><a href="#" style="text-decoration:underline;">5555 Hamner Ave, Norco, CA 92860</a></p>
+
+      <h6>Hours</h6>
+      <ul>
+        <li><strong>Wed. (04/09):</strong> 5:00 pm - 10:00 pm</li>
+        <li><strong>Thu. (04/10):</strong> 5:00 pm - 10:00 pm</li>
+        <li><strong>Fri. (04/11):</strong> 5:00 pm - 11:00 pm</li>
+        <li><strong>Sat. (04/12):</strong> 1:00 pm - 11:00 pm</li>
+      </ul>
+    </div>
+  </main>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer" style="padding:16px 34px;margin-top:20px;">
+  <p class="copyright">Copyright © 2026 <a href="#">Magic Money</a>, All rights reserved.</p>
+</footer>
+
+<script>
+(function(){
+  var deadline = new Date('2026-04-09T06:59:00Z');
+  function tick(){
+    var now=new Date(),diff=deadline-now;
+    if(diff<=0)return;
+    var d=Math.floor(diff/864e5),h=Math.floor(diff%864e5/36e5),
+        m=Math.floor(diff%36e5/6e4),s=Math.floor(diff%6e4/1e3),
+        pad=function(n){return n<10?'0'+n:''+n};
+    document.getElementById('hc-d').textContent=pad(d);
+    document.getElementById('hc-h').textContent=pad(h);
+    document.getElementById('hc-m').textContent=pad(m);
+    var se=document.getElementById('hc-s');
+    se.textContent=pad(s);
+    se.style.transform='scale(1.08)';
+    setTimeout(function(){se.style.transform='scale(1)';},150);
+  }
+  if(new Date()<deadline){tick();setInterval(tick,1000);}
+})();
+</script>
+</body>
+</html>
