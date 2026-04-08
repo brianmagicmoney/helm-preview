@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Helm & Sons — Order Confirmed</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --helm-purple: #6E0095;
+  --helm-purple-dark: #4a0066;
+  --helm-purple-deep: #2d003d;
+  --helm-gold: #FBAE1B;
+  --helm-gold-dark: #d4940f;
+  --helm-green: #3ca214;
+  --helm-white: #ffffff;
+  --helm-font: 'Bebas Neue', 'Impact', 'Arial Narrow', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  color: #4a4a4a;
+  background: linear-gradient(180deg, #f3e8ff 0%, #faf5ff 40%, #fffbeb 100%);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: var(--helm-purple); text-decoration: none; transition: all .3s; }
+img { max-width: 100%; display: block; }
+
+/* ═══ HEADER — Single Bar ═══ */
+.header-bar {
+  height: 120px;
+  background: url('https://helmandsons.com/images/site/template/btn-rides.jpg') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.header-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(110,0,149,.92), rgba(74,0,102,.88) 50%, rgba(45,0,61,.85));
+  z-index: 0;
+}
+.header-bar > * { position: relative; z-index: 1; }
+
+.header-logo {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 3px solid var(--helm-purple);
+  box-shadow: 0 0 0 3px var(--helm-gold), 0 4px 20px rgba(110,0,149,.2);
+  overflow: hidden;
+  background: #fff;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.header-logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+
+.header-info { flex: 1; min-width: 0; }
+.header-info h1 {
+  font-family: var(--helm-font);
+  color: #fff;
+  font-size: 22px;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+.header-info p {
+  font-size: 13px;
+  color: rgba(255,255,255,.8);
+}
+
+/* ═══ MAIN CONTENT — Message Block ═══ */
+.confirmation-main {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 30px 20px 40px;
+}
+
+.message-block {
+  width: 100%;
+  max-width: 580px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(110,0,149,.1);
+  overflow: hidden;
+  border: 1px solid #e9d5f5;
+}
+
+/* Banner area */
+.message-banner {
+  height: 200px;
+  background: url('https://helmandsons.com/images/site/template/btn-rides.jpg') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.message-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(110,0,149,.88), rgba(74,0,102,.82) 50%, rgba(45,0,61,.78));
+}
+.banner-logo {
+  position: relative; z-index: 1;
+  width: 168px; height: 168px;
+  border-radius: 50%;
+  border: 5px solid var(--helm-gold);
+  box-shadow: 0 0 0 4px var(--helm-purple), 0 8px 40px rgba(0,0,0,.3);
+  overflow: hidden;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 40px;
+}
+.banner-logo img { width: 100%; height: 100%; object-fit: contain; padding: 12px; }
+
+/* Content area */
+.message-content {
+  padding: 50px 36px 36px;
+  text-align: center;
+}
+
+.success-icon {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4CAF50, #2e7d32);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 4px 20px rgba(76,175,80,.3);
+  animation: scaleIn .5s ease-out;
+}
+@keyframes scaleIn {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.success-icon svg {
+  width: 36px; height: 36px; color: #fff;
+}
+
+.message-content h2 {
+  font-family: var(--helm-font);
+  font-size: 42px;
+  color: var(--helm-purple);
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+.message-content .subtitle {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 28px;
+}
+
+/* Order details box */
+.order-details {
+  background: linear-gradient(135deg, #faf5ff, #fffbeb);
+  border: 1px solid #e9d5f5;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: left;
+  margin-bottom: 24px;
+}
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(110,0,149,.06);
+}
+.order-row:last-child { border-bottom: none; }
+.order-row .label {
+  color: #888;
+  font-weight: 500;
+}
+.order-row .value {
+  color: #333;
+  font-weight: 700;
+  text-align: right;
+}
+.order-row.total-row {
+  padding-top: 14px;
+  margin-top: 6px;
+  border-top: 2px solid var(--helm-purple);
+  border-bottom: none;
+}
+.order-row.total-row .label {
+  font-family: var(--helm-font);
+  font-size: 18px;
+  color: var(--helm-purple);
+  letter-spacing: 2px;
+}
+.order-row.total-row .value {
+  font-family: var(--helm-font);
+  font-size: 22px;
+  color: var(--helm-purple);
+  letter-spacing: 1px;
+}
+
+.email-notice {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.email-notice svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* Back button */
+.back-event-btn {
+  display: inline-block;
+  font-size: 20px;
+  padding: 14px 40px;
+  font-weight: 800;
+  background: var(--helm-purple);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-family: var(--helm-font);
+  letter-spacing: 3px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(110,0,149,.3);
+  transition: all .3s;
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+.back-event-btn:hover {
+  background: var(--helm-purple-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(110,0,149,.4);
+}
+
+/* Social share icons */
+.social-share {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.social-circle {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: #f3e8ff;
+  border: 2px solid #e9d5f5;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all .3s;
+}
+.social-circle:hover {
+  background: var(--helm-purple);
+  border-color: var(--helm-purple);
+}
+.social-circle:hover svg { color: #fff; }
+.social-circle svg {
+  width: 18px; height: 18px;
+  color: var(--helm-purple);
+  transition: all .3s;
+}
+
+/* ═══ FOOTER ═══ */
+.footer {
+  padding: 20px 34px;
+  background: var(--helm-purple-dark);
+  text-align: center;
+  flex-shrink: 0;
+}
+.footer-logo { width: 60px; margin: 0 auto 10px; opacity: .7; }
+.copyright {
+  font-size: 13px;
+  color: rgba(255,255,255,.7);
+}
+.copyright a { color: var(--helm-gold); }
+
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f3e8ff; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--helm-purple), var(--helm-purple-dark)); border-radius: 4px; }
+::selection { background: var(--helm-purple); color: #fff; }
+
+*:focus-visible {
+  outline: 2px solid var(--helm-gold);
+  outline-offset: 2px;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 640px) {
+  .header-bar { height: auto; min-height: 80px; padding: 12px 16px; }
+  .header-logo { width: 48px; height: 48px; }
+  .header-info h1 { font-size: 18px; }
+  .confirmation-main { padding: 20px 12px 30px; }
+  .message-banner { height: 160px; }
+  .banner-logo { width: 120px; height: 120px; margin-top: 30px; }
+  .message-content { padding: 40px 20px 28px; }
+  .message-content h2 { font-size: 32px; }
+  .back-event-btn { font-size: 16px; padding: 12px 28px; }
+  .order-details { padding: 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header-bar">
+  <div class="header-logo">
+    <img src="https://helmandsons.com/images/site/template/logo.png" alt="Helm & Sons">
+  </div>
+  <div class="header-info">
+    <h1>Spring Break Extravaganza</h1>
+    <p>Order Confirmation</p>
+  </div>
+</header>
+
+<!-- ═══ CONFIRMATION CONTENT ═══ -->
+<main class="confirmation-main">
+  <div class="message-block">
+
+    <!-- Banner with large logo -->
+    <div class="message-banner">
+      <div class="banner-logo">
+        <img src="https://helmandsons.com/images/site/template/logo.png" alt="Helm & Sons">
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="message-content">
+
+      <!-- Success checkmark -->
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <h2>Thank You!</h2>
+      <p class="subtitle">Your order has been confirmed</p>
+
+      <!-- Order details -->
+      <div class="order-details">
+        <div class="order-row">
+          <span class="label">Order #</span>
+          <span class="value">HLM-2026-04789</span>
+        </div>
+        <div class="order-row">
+          <span class="label">Event</span>
+          <span class="value">Spring Break Extravaganza</span>
+        </div>
+        <div class="order-row">
+          <span class="label">Date</span>
+          <span class="value">Thursday, April 10, 2026</span>
+        </div>
+        <div class="order-row">
+          <span class="label">Items</span>
+          <span class="value">2x Unlimited Rides, 1x Game Pass</span>
+        </div>
+        <div class="order-row total-row">
+          <span class="label">TOTAL PAID</span>
+          <span class="value">$115.50</span>
+        </div>
+        <div class="order-row" style="border-bottom:none;">
+          <span class="label">Tickets sent to</span>
+          <span class="value" style="color:var(--helm-purple);">guest@email.com</span>
+        </div>
+      </div>
+
+      <!-- Email notice -->
+      <div class="email-notice">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+        A confirmation email has been sent to your email address
+      </div>
+
+      <!-- Back to event button -->
+      <a href="portal-preview.html" class="back-event-btn">BACK TO EVENT</a>
+
+      <!-- Social share icons -->
+      <div class="social-share">
+        <!-- Facebook -->
+        <div class="social-circle" title="Share on Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </div>
+        <!-- Twitter/X -->
+        <div class="social-circle" title="Share on X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </div>
+        <!-- Instagram -->
+        <div class="social-circle" title="Share on Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <!-- Copy link -->
+        <div class="social-circle" title="Copy Link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <img src="https://helmandsons.com/images/site/template/f-logo.png" alt="Helm Bear" class="footer-logo">
+  <p class="copyright">Copyright &copy; 2026 <a href="https://magicmoney.com" target="_blank">Magic Money</a>. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

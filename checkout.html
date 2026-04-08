@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Helm & Sons — Checkout</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --helm-purple: #6E0095;
+  --helm-purple-dark: #4a0066;
+  --helm-purple-deep: #2d003d;
+  --helm-gold: #FBAE1B;
+  --helm-gold-dark: #d4940f;
+  --helm-green: #3ca214;
+  --helm-white: #ffffff;
+  --helm-font: 'Bebas Neue', 'Impact', 'Arial Narrow', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  color: #4a4a4a;
+  background: linear-gradient(180deg, #f3e8ff 0%, #faf5ff 40%, #fffbeb 100%);
+  line-height: 1.5;
+  padding-bottom: 100px;
+  min-height: 100vh;
+}
+a { color: var(--helm-purple); text-decoration: none; transition: all .3s; }
+img { max-width: 100%; display: block; }
+
+/* ═══ HEADER — Single Bar ═══ */
+.header-bar {
+  height: 120px;
+  background: url('https://helmandsons.com/images/site/template/btn-rides.jpg') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+}
+.header-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(110,0,149,.92), rgba(74,0,102,.88) 50%, rgba(45,0,61,.85));
+  z-index: 0;
+}
+.header-bar > * { position: relative; z-index: 1; }
+
+.back-btn {
+  height: 40px; width: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--helm-gold);
+  cursor: pointer; border: none;
+  box-shadow: 0 2px 8px rgba(251,174,27,.4);
+  transition: all .3s;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.back-btn:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(251,174,27,.6); }
+.back-btn img { filter: brightness(0); width: 18px; }
+
+.header-logo {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 3px solid var(--helm-purple);
+  box-shadow: 0 0 0 3px var(--helm-gold), 0 4px 20px rgba(110,0,149,.2);
+  overflow: hidden;
+  background: #fff;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.header-logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+
+.header-info { flex: 1; min-width: 0; }
+.header-info h1 {
+  font-family: var(--helm-font);
+  color: #fff;
+  font-size: 22px;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.header-info p {
+  font-size: 13px;
+  color: rgba(255,255,255,.8);
+}
+
+.header-timer {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(251,174,27,.4);
+  border-radius: 30px;
+  padding: 8px 18px;
+  flex-shrink: 0;
+}
+.header-timer svg { width: 18px; height: 18px; }
+.header-timer span {
+  color: var(--helm-gold);
+  font-family: var(--helm-font);
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+/* ═══ MAIN CONTENT ═══ */
+.checkout-wrapper {
+  display: flex;
+  padding: 24px 34px;
+  gap: 30px;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.checkout-left {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e9d5f5;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(110,0,149,.06);
+  min-width: 0;
+}
+.checkout-right {
+  width: 360px;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid #e9d5f5;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(110,0,149,.06);
+}
+
+/* ═══ FORM STYLES ═══ */
+.section-title {
+  font-family: var(--helm-font);
+  font-size: 22px;
+  color: var(--helm-purple);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f3e8ff;
+}
+
+.delivery-toggle {
+  display: flex; gap: 0; margin-bottom: 20px;
+}
+.delivery-toggle label {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid #e0e0e0;
+  transition: all .3s;
+  color: #666;
+  background: #fafafa;
+}
+.delivery-toggle label:first-child { border-radius: 30px 0 0 30px; }
+.delivery-toggle label:last-child { border-radius: 0 30px 30px 0; border-left: none; }
+.delivery-toggle input[type="radio"] { display: none; }
+.delivery-toggle input[type="radio"]:checked + label,
+.delivery-toggle label.active {
+  background: var(--helm-purple);
+  border-color: var(--helm-purple);
+  color: #fff;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #505053;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: 'Manrope', sans-serif;
+  transition: all .3s;
+  outline: none;
+  color: #333;
+  background: #fff;
+}
+.form-group input:focus {
+  border-color: var(--helm-purple);
+  box-shadow: 0 0 0 3px rgba(110,0,149,.1);
+}
+.form-group input:focus-visible {
+  outline: 2px solid var(--helm-gold);
+  outline-offset: 2px;
+}
+
+.form-row {
+  display: flex; gap: 14px;
+}
+.form-row .form-group { flex: 1; }
+
+.card-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 2px solid #f3e8ff;
+}
+.card-section .section-title {
+  display: flex; align-items: center; gap: 10px;
+}
+.card-section .section-title svg {
+  width: 24px; height: 24px; color: var(--helm-purple);
+}
+
+.card-logos {
+  display: flex; gap: 8px; margin-top: 14px; align-items: center;
+}
+.card-logo {
+  width: 48px; height: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 800; color: #555;
+  background: #fafafa;
+}
+
+.terms-check {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-top: 20px;
+  font-size: 14px; color: #666;
+}
+.terms-check input[type="checkbox"] {
+  width: 20px; height: 20px;
+  accent-color: var(--helm-purple);
+  margin-top: 1px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.terms-check a {
+  color: var(--helm-purple);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* ═══ ORDER SUMMARY ═══ */
+.summary-title {
+  font-family: var(--helm-font);
+  font-size: 24px;
+  color: var(--helm-purple);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.summary-event {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0e6f6;
+  margin-bottom: 16px;
+}
+.summary-event h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+.summary-event p {
+  font-size: 13px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.summary-items {
+  border-bottom: 1px solid #f0e6f6;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+.summary-item .item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+.summary-item .item-qty {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+}
+.summary-item .item-price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--helm-purple);
+  font-family: var(--helm-font);
+  letter-spacing: 1px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 14px;
+}
+.summary-line.subtotal { color: #555; }
+.summary-line.fee { color: #888; font-size: 13px; }
+.summary-line.total {
+  padding-top: 14px;
+  margin-top: 8px;
+  border-top: 2px solid var(--helm-purple);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--helm-purple);
+  font-family: var(--helm-font);
+  letter-spacing: 2px;
+}
+
+/* ═══ CHECKOUT BAR ═══ */
+.checkout-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, var(--helm-purple), var(--helm-purple-dark));
+  border-top: 3px solid var(--helm-gold);
+  box-shadow: 0 -4px 20px rgba(110,0,149,.3);
+  padding: 14px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.checkout-bar .total {
+  color: #fff;
+  font-family: var(--helm-font);
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+.checkout-bar .total span { color: var(--helm-gold); }
+
+.place-order-btn {
+  font-size: 20px;
+  padding: 14px 36px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--helm-gold), #f5a623);
+  color: var(--helm-purple-dark);
+  border: none;
+  border-radius: 30px;
+  font-family: var(--helm-font);
+  letter-spacing: 3px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(251,174,27,.4);
+  transition: all .3s;
+  text-decoration: none;
+  display: inline-block;
+}
+.place-order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(251,174,27,.6);
+}
+
+/* ═══ FOOTER ═══ */
+.footer {
+  padding: 20px 34px;
+  background: var(--helm-purple-dark);
+  text-align: center;
+}
+.footer-logo { width: 60px; margin: 0 auto 10px; opacity: .7; }
+.copyright {
+  font-size: 13px;
+  color: rgba(255,255,255,.7);
+  background: transparent;
+}
+.copyright a { color: var(--helm-gold); }
+
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f3e8ff; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--helm-purple), var(--helm-purple-dark)); border-radius: 4px; }
+::selection { background: var(--helm-purple); color: #fff; }
+
+*:focus-visible {
+  outline: 2px solid var(--helm-gold);
+  outline-offset: 2px;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 860px) {
+  .checkout-wrapper {
+    flex-direction: column;
+    padding: 16px;
+    gap: 20px;
+  }
+  .checkout-right { width: 100%; }
+  .header-bar { height: auto; min-height: 80px; padding: 12px 16px; flex-wrap: wrap; }
+  .header-timer { margin-left: auto; }
+  .header-info h1 { font-size: 18px; }
+  .checkout-bar { padding: 12px 16px; }
+  .checkout-bar .total { font-size: 18px; }
+  .place-order-btn { font-size: 16px; padding: 12px 24px; }
+}
+@media (max-width: 480px) {
+  .form-row { flex-direction: column; gap: 0; }
+  .header-logo { width: 48px; height: 48px; }
+  .header-timer span { font-size: 14px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header-bar">
+  <a href="tickets-preview.html" class="back-btn" title="Back to Tickets">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z'/%3E%3C/svg%3E" alt="Back">
+  </a>
+  <div class="header-logo">
+    <img src="https://helmandsons.com/images/site/template/logo.png" alt="Helm & Sons">
+  </div>
+  <div class="header-info">
+    <h1>Spring Break Extravaganza</h1>
+    <p>Checkout</p>
+  </div>
+  <div class="header-timer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    <span>TIME REMAINING 14:32</span>
+  </div>
+</header>
+
+<!-- ═══ CHECKOUT CONTENT ═══ -->
+<main class="checkout-wrapper">
+
+  <!-- LEFT — Order Form -->
+  <div class="checkout-left">
+
+    <h2 class="section-title">Delivery Method</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:14px;">How would you like to receive your tickets?</p>
+    <div class="delivery-toggle">
+      <input type="radio" name="delivery" id="del-email" checked>
+      <label for="del-email" class="active" onclick="this.parentElement.querySelectorAll('label').forEach(l=>l.classList.remove('active'));this.classList.add('active');">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+        Email
+      </label>
+      <input type="radio" name="delivery" id="del-phone">
+      <label for="del-phone" onclick="this.parentElement.querySelectorAll('label').forEach(l=>l.classList.remove('active'));this.classList.add('active');">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+        Phone (SMS)
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" value="guest@email.com">
+    </div>
+
+    <div class="form-group">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" placeholder="John Smith">
+    </div>
+
+    <!-- Credit Card -->
+    <div class="card-section">
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Payment Details
+      </h2>
+
+      <div class="form-group">
+        <label for="cardnum">Card Number</label>
+        <input type="text" id="cardnum" placeholder="1234 5678 9012 3456" maxlength="19">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="expiry">Expiry Date</label>
+          <input type="text" id="expiry" placeholder="MM / YY" maxlength="7">
+        </div>
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" placeholder="123" maxlength="4">
+        </div>
+        <div class="form-group">
+          <label for="zip">Billing ZIP</label>
+          <input type="text" id="zip" placeholder="10001" maxlength="10">
+        </div>
+      </div>
+
+      <div class="card-logos">
+        <div class="card-logo" style="background:#1a1f71;color:#fff;font-size:11px;font-weight:800;font-style:italic;">VISA</div>
+        <div class="card-logo">
+          <svg width="32" height="20" viewBox="0 0 32 20"><circle cx="11" cy="10" r="9" fill="#EB001B" opacity=".8"/><circle cx="21" cy="10" r="9" fill="#F79E1B" opacity=".8"/></svg>
+        </div>
+        <div class="card-logo" style="background:#016fd0;color:#fff;font-size:8px;font-weight:800;line-height:1;text-align:center;">AMEX</div>
+        <div class="card-logo" style="background:#1D1D1B;color:#fff;font-size:8px;font-weight:800;">DISC</div>
+        <span style="font-size:12px;color:#aaa;margin-left:8px;">Secure payment</span>
+      </div>
+
+      <div class="terms-check">
+        <input type="checkbox" id="terms" checked>
+        <label for="terms" style="font-size:14px;color:#666;text-transform:none;letter-spacing:0;font-weight:400;cursor:pointer;">
+          I agree to the <a href="#">terms and conditions</a> and <a href="#">privacy policy</a>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — Order Summary -->
+  <div class="checkout-right">
+    <h2 class="summary-title">Order Summary</h2>
+
+    <div class="summary-event">
+      <h3>Spring Break Extravaganza</h3>
+      <p>Thu, Apr 10, 2026</p>
+      <p>Helm & Sons Amusements</p>
+    </div>
+
+    <div class="summary-items">
+      <div class="summary-item">
+        <div>
+          <div class="item-name">Unlimited Rides Wristband</div>
+          <div class="item-qty">Qty: 2</div>
+        </div>
+        <div class="item-price">$60.00</div>
+      </div>
+      <div class="summary-item">
+        <div>
+          <div class="item-name">Game Pass</div>
+          <div class="item-qty">Qty: 1</div>
+        </div>
+        <div class="item-price">$50.00</div>
+      </div>
+    </div>
+
+    <div class="summary-line subtotal">
+      <span>Subtotal</span>
+      <span style="font-weight:700;">$110.00</span>
+    </div>
+    <div class="summary-line fee">
+      <span>Service Fee</span>
+      <span>$5.50</span>
+    </div>
+    <div class="summary-line total">
+      <span>Total</span>
+      <span>$115.50</span>
+    </div>
+  </div>
+</main>
+
+<!-- ═══ CHECKOUT BAR ═══ -->
+<div class="checkout-bar">
+  <div class="total">TOTAL: <span>$115.50</span></div>
+  <a href="confirmation.html" class="place-order-btn">PLACE ORDER</a>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <img src="https://helmandsons.com/images/site/template/f-logo.png" alt="Helm Bear" class="footer-logo">
+  <p class="copyright">Copyright &copy; 2026 <a href="https://magicmoney.com" target="_blank">Magic Money</a>. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
