@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Printable Ticket — Helm & Sons Amusements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --helm-purple: #6E0095;
+    --helm-purple-dark: #4a0066;
+    --helm-gold: #FBAE1B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Manrope', -apple-system, sans-serif;
+    background: linear-gradient(135deg, #1a0025 0%, #0d0012 50%, #1a0025 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    color: #333;
+  }
+
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #1a0025; }
+  ::-webkit-scrollbar-thumb { background: var(--helm-purple); border-radius: 4px; }
+  *:focus-visible { outline: 2px solid var(--helm-gold); outline-offset: 2px; }
+
+  .screen-nav {
+    text-align: center;
+    margin-bottom: 28px;
+    max-width: 800px;
+    width: 100%;
+  }
+  .screen-nav h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--helm-gold);
+    margin-bottom: 6px;
+  }
+  .screen-nav p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 20px;
+  }
+  .screen-nav .actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-print {
+    background: var(--helm-purple);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+  }
+  .btn-print:hover { background: var(--helm-purple-dark); }
+  .btn-print svg { width: 18px; height: 18px; fill: #fff; }
+  .btn-back {
+    color: var(--helm-gold);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 20px;
+    border: 1px solid rgba(251,174,27,0.3);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .btn-back:hover {
+    background: rgba(251,174,27,0.1);
+    border-color: var(--helm-gold);
+  }
+
+  /* Ticket Container */
+  .ticket-page {
+    background: #fff;
+    max-width: 800px;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.4);
+  }
+
+  /* Header Banner */
+  .ticket-header {
+    position: relative;
+    padding: 48px 40px 40px;
+    background: linear-gradient(135deg, var(--helm-purple) 0%, var(--helm-purple-dark) 70%, #2d004a 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+  .ticket-header .panorama-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+    mix-blend-mode: luminosity;
+  }
+  .ticket-header .header-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(74,0,102,0.4) 0%, rgba(74,0,102,0.85) 100%);
+  }
+  .header-content {
+    position: relative;
+    z-index: 2;
+  }
+  .header-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  }
+  .header-logo-fallback {
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .header-logo-fallback span {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 40px;
+    color: var(--helm-gold);
+  }
+  .header-event {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 52px;
+    color: #fff;
+    letter-spacing: 4px;
+    line-height: 1;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.3);
+    margin-bottom: 8px;
+  }
+  .header-org {
+    font-size: 16px;
+    color: var(--helm-gold);
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .header-datetime {
+    font-size: 15px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .header-location {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 400;
+  }
+
+  /* Gold separator */
+  .gold-bar {
+    height: 5px;
+    background: linear-gradient(90deg, var(--helm-gold), #ffe082, var(--helm-gold), #ffe082, var(--helm-gold));
+  }
+
+  /* Ticket Body */
+  .ticket-body {
+    display: flex;
+    min-height: 260px;
+  }
+
+  /* Main ticket area */
+  .ticket-main {
+    flex: 1;
+    padding: 32px 36px;
+    position: relative;
+  }
+
+  .ticket-type {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 32px;
+    color: var(--helm-purple);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .ticket-badge {
+    display: inline-block;
+    background: var(--helm-purple);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 5px 14px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  .gold-border {
+    height: 2px;
+    background: linear-gradient(90deg, var(--helm-gold), transparent);
+    margin-bottom: 20px;
+    max-width: 200px;
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 10px 16px;
+    margin-bottom: 24px;
+  }
+  .detail-key {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    padding-top: 2px;
+  }
+  .detail-val {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  .admit-badge {
+    display: inline-block;
+    border: 3px solid var(--helm-purple);
+    color: var(--helm-purple);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    letter-spacing: 3px;
+    padding: 8px 24px;
+    border-radius: 4px;
+    position: relative;
+  }
+  .admit-badge::before,
+  .admit-badge::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 2px;
+    background: var(--helm-gold);
+  }
+  .admit-badge::before { right: 100%; margin-right: 8px; }
+  .admit-badge::after { left: 100%; margin-left: 8px; }
+
+  /* Tear-off stub */
+  .ticket-stub {
+    width: 200px;
+    border-left: 2px dashed #ccc;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+    position: relative;
+  }
+
+  /* Perforated edge circles */
+  .ticket-stub::before,
+  .ticket-stub::after {
+    content: '';
+    position: absolute;
+    left: -9px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+  }
+  .ticket-stub::before { top: -8px; }
+  .ticket-stub::after { bottom: -8px; }
+
+  .stub-qr {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 12px;
+  }
+  .stub-qr svg { width: 100%; height: 100%; }
+
+  .stub-info {
+    text-align: center;
+  }
+  .stub-ticket-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 16px;
+    color: var(--helm-purple);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+  .stub-date {
+    font-size: 11px;
+    color: #888;
+    font-weight: 500;
+  }
+  .stub-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #aaa;
+    margin-top: 8px;
+    font-weight: 700;
+  }
+
+  /* Rules */
+  .ticket-rules {
+    background: #f8f8f8;
+    padding: 20px 36px;
+    border-top: 1px solid #eee;
+  }
+  .rules-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  .rules-text {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* Footer */
+  .ticket-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 36px;
+    border-top: 1px solid #eee;
+    background: #fff;
+  }
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    opacity: 0.6;
+  }
+  .footer-logo-fallback {
+    width: 32px;
+    height: 32px;
+    background: var(--helm-purple);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+  }
+  .footer-logo-fallback span {
+    color: #fff;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 14px;
+  }
+  .footer-brand {
+    font-size: 11px;
+    color: #aaa;
+    font-weight: 500;
+  }
+  .footer-powered {
+    font-size: 10px;
+    color: #ccc;
+    font-weight: 500;
+  }
+  .footer-proof {
+    font-size: 11px;
+    color: #aaa;
+    text-align: right;
+    max-width: 300px;
+    line-height: 1.5;
+  }
+
+  /* Print styles */
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+      min-height: auto;
+    }
+    .screen-nav { display: none; }
+    .ticket-page {
+      box-shadow: none;
+      border-radius: 0;
+      max-width: none;
+    }
+    .ticket-header {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .gold-bar, .ticket-badge, .admit-badge {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ticket-body { flex-direction: column; }
+    .ticket-stub {
+      width: 100%;
+      border-left: none;
+      border-top: 2px dashed #ccc;
+      flex-direction: row;
+      gap: 20px;
+      padding: 20px;
+    }
+    .ticket-stub::before,
+    .ticket-stub::after {
+      left: 50%;
+      top: -9px;
+      bottom: auto;
+    }
+    .ticket-stub::after {
+      top: auto;
+      bottom: -9px;
+    }
+    .stub-qr { width: 100px; height: 100px; margin-bottom: 0; }
+    .header-event { font-size: 36px; letter-spacing: 2px; }
+    .ticket-type { font-size: 26px; }
+    .details-grid { grid-template-columns: 1fr; gap: 6px; }
+    .detail-key { padding-top: 8px; }
+    .ticket-main { padding: 24px 20px; }
+    .ticket-rules { padding: 16px 20px; }
+    .ticket-footer { padding: 16px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    .footer-proof { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="screen-nav">
+  <h1>Your Printable Ticket</h1>
+  <p>Print this page or save as PDF for gate entry</p>
+  <div class="actions">
+    <button class="btn-print" onclick="window.print()">
+      <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+      Print Ticket
+    </button>
+    <a href="confirmation.html" class="btn-back">&larr; Back to Confirmation</a>
+  </div>
+</div>
+
+<div class="ticket-page">
+
+  <!-- Header Banner -->
+  <div class="ticket-header">
+    <img class="panorama-bg" src="images/rides-panorama.jpg" alt="" onerror="this.style.display='none'">
+    <div class="header-gradient"></div>
+    <div class="header-content">
+      <img class="header-logo" src="images/helm-logo.png" alt="Helm & Sons Amusements" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">
+      <div class="header-logo-fallback" style="display:none"><span>H&amp;S</span></div>
+      <div class="header-event">Spring Break<br>Extravaganza</div>
+      <div class="header-org">Helm &amp; Sons Amusements</div>
+      <div class="header-datetime">Thursday, April 10, 2026 &bull; 5:00 PM - 10:00 PM</div>
+      <div class="header-location">Silver Lakes, 5555 Hamner Ave, Norco, CA</div>
+    </div>
+  </div>
+
+  <div class="gold-bar"></div>
+
+  <!-- Ticket Body -->
+  <div class="ticket-body">
+    <div class="ticket-main">
+      <div class="ticket-type">Unlimited Rides Wristband</div>
+      <span class="ticket-badge">Full Access</span>
+      <div class="gold-border"></div>
+
+      <div class="details-grid">
+        <span class="detail-key">Ticket Holder</span>
+        <span class="detail-val">Guest</span>
+        <span class="detail-key">Order #</span>
+        <span class="detail-val">HLM-2026-04789</span>
+        <span class="detail-key">Date</span>
+        <span class="detail-val">April 10, 2026</span>
+        <span class="detail-key">Valid</span>
+        <span class="detail-val">5:00 PM - 10:00 PM</span>
+        <span class="detail-key">Ticket #</span>
+        <span class="detail-val">1 of 2</span>
+      </div>
+
+      <div class="admit-badge">VALID FOR ONE PERSON, ONE DAY</div>
+    </div>
+
+    <div class="ticket-stub">
+      <div class="stub-qr">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="120" fill="#fff"/>
+          <rect x="5" y="5" width="28" height="28" fill="#1a1a1a"/>
+          <rect x="9" y="9" width="20" height="20" fill="#fff"/>
+          <rect x="13" y="13" width="12" height="12" fill="#1a1a1a"/>
+          <rect x="87" y="5" width="28" height="28" fill="#1a1a1a"/>
+          <rect x="91" y="9" width="20" height="20" fill="#fff"/>
+          <rect x="95" y="13" width="12" height="12" fill="#1a1a1a"/>
+          <rect x="5" y="87" width="28" height="28" fill="#1a1a1a"/>
+          <rect x="9" y="91" width="20" height="20" fill="#fff"/>
+          <rect x="13" y="95" width="12" height="12" fill="#1a1a1a"/>
+          <g fill="#1a1a1a">
+            <rect x="40" y="7" width="4" height="4"/><rect x="48" y="7" width="4" height="4"/><rect x="56" y="11" width="4" height="4"/><rect x="64" y="7" width="4" height="4"/><rect x="72" y="11" width="4" height="4"/><rect x="78" y="7" width="4" height="4"/>
+            <rect x="40" y="15" width="4" height="4"/><rect x="52" y="19" width="4" height="4"/><rect x="60" y="15" width="4" height="4"/><rect x="72" y="19" width="4" height="4"/>
+            <rect x="40" y="23" width="4" height="4"/><rect x="48" y="27" width="4" height="4"/><rect x="56" y="23" width="4" height="4"/><rect x="68" y="27" width="4" height="4"/>
+            <rect x="7" y="40" width="4" height="4"/><rect x="15" y="44" width="4" height="4"/><rect x="27" y="40" width="4" height="4"/>
+            <rect x="40" y="40" width="4" height="4"/><rect x="48" y="44" width="4" height="4"/><rect x="56" y="40" width="4" height="4"/><rect x="64" y="44" width="4" height="4"/><rect x="72" y="40" width="4" height="4"/><rect x="80" y="44" width="4" height="4"/><rect x="92" y="40" width="4" height="4"/><rect x="100" y="44" width="4" height="4"/><rect x="108" y="40" width="4" height="4"/>
+            <rect x="7" y="52" width="4" height="4"/><rect x="19" y="52" width="4" height="4"/><rect x="27" y="56" width="4" height="4"/>
+            <rect x="40" y="56" width="4" height="4"/><rect x="52" y="52" width="4" height="4"/><rect x="60" y="56" width="4" height="4"/><rect x="72" y="52" width="4" height="4"/><rect x="80" y="56" width="4" height="4"/><rect x="92" y="52" width="4" height="4"/><rect x="104" y="56" width="4" height="4"/>
+            <rect x="11" y="60" width="4" height="4"/><rect x="23" y="64" width="4" height="4"/>
+            <rect x="40" y="64" width="4" height="4"/><rect x="48" y="60" width="4" height="4"/><rect x="60" y="64" width="4" height="4"/><rect x="72" y="60" width="4" height="4"/><rect x="84" y="64" width="4" height="4"/><rect x="96" y="60" width="4" height="4"/><rect x="108" y="64" width="4" height="4"/>
+            <rect x="7" y="72" width="4" height="4"/><rect x="19" y="72" width="4" height="4"/><rect x="27" y="76" width="4" height="4"/>
+            <rect x="40" y="76" width="4" height="4"/><rect x="52" y="72" width="4" height="4"/><rect x="64" y="76" width="4" height="4"/><rect x="76" y="72" width="4" height="4"/><rect x="88" y="76" width="4" height="4"/><rect x="100" y="72" width="4" height="4"/>
+            <rect x="40" y="88" width="4" height="4"/><rect x="48" y="92" width="4" height="4"/><rect x="56" y="88" width="4" height="4"/><rect x="68" y="92" width="4" height="4"/><rect x="76" y="88" width="4" height="4"/>
+            <rect x="88" y="88" width="4" height="4"/><rect x="96" y="92" width="4" height="4"/><rect x="108" y="88" width="4" height="4"/>
+            <rect x="40" y="100" width="4" height="4"/><rect x="52" y="104" width="4" height="4"/><rect x="64" y="100" width="4" height="4"/><rect x="76" y="104" width="4" height="4"/>
+            <rect x="88" y="100" width="4" height="4"/><rect x="104" y="104" width="4" height="4"/>
+            <rect x="40" y="108" width="4" height="4"/><rect x="48" y="108" width="4" height="4"/><rect x="60" y="108" width="4" height="4"/><rect x="72" y="108" width="4" height="4"/>
+            <rect x="92" y="108" width="4" height="4"/><rect x="108" y="108" width="4" height="4"/>
+          </g>
+        </svg>
+      </div>
+      <div class="stub-info">
+        <div class="stub-ticket-num">HLM-2026-04789</div>
+        <div class="stub-date">Apr 10, 2026</div>
+        <div class="stub-label">Tear Here</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rules -->
+  <div class="ticket-rules">
+    <div class="rules-title">Wristband Rules &amp; Conditions</div>
+    <div class="rules-text">
+      Must be worn on wrist at all times during the event. Non-transferable once applied. Height requirements apply to certain rides.
+      Wristband must not be tampered with, cut, or removed. Management reserves the right to refuse entry or remove any guest.
+      No refunds or exchanges. Rain or shine event. Not responsible for lost or stolen items.
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="ticket-footer">
+    <div class="footer-left">
+      <img class="footer-logo" src="images/helm-logo-footer.png" alt="Helm" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="footer-logo-fallback" style="display:none"><span>H</span></div>
+      <div>
+        <div class="footer-brand">Helm &amp; Sons Amusements</div>
+        <div class="footer-powered">Powered by MagicMoney</div>
+      </div>
+    </div>
+    <div class="footer-proof">
+      This ticket is your proof of purchase. Please present at the gate for wristband exchange.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
